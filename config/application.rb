@@ -24,5 +24,13 @@ module RaC
     config.active_record.raise_in_transactional_callbacks = true
     # config.assets.paths << "#{Rails.root}/app/assets/images/img/"
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application"   : "devise" }
+      Devise::ConfirmationsController.layout "devise"
+      Devise::UnlocksController.layout "devise"
+      Devise::PasswordsController.layout "devise"
+    end
   end
 end

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160524141959) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20160524141959) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "dni"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "mobile"
+    t.string   "address"
+    t.string   "photo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

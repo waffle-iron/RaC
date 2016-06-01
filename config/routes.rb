@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :type_categories
   devise_for :users
   root :to => "admin#index"
   # The priority is based upon order of creation: first created -> highest priority.

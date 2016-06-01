@@ -1,18 +1,21 @@
-<h2>Sign up</h2>
+<% @header.title = 'Registros' %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= render '/layouts/block_header' %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<%= card ['Nuevo Usuario', 'Crear Usuario'] do %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <%= form_for(resource, builder: ThemeBuilder, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+    <%= f.email_field :email, :autofocus => true, label: :email %>
 
-  <div><%= f.submit "Sign up" %></div>
+    <%= f.password_field :password, label: :clave %>
+
+    <%= f.password_field :password_confirmation, label: 'Confirmar Clave' %>
+
+    <%= f.submit 'Enviar' %>
+  <% end %>
+  <br/>
+  <% render "devise/shared/links" %>
+
 <% end %>
-
-<%= render "devise/shared/links" %>

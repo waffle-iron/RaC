@@ -1,0 +1,12 @@
+<%= content_tag(:div, class: "block-header") do %>
+  <h2><%= @header&.title %></h2>
+  <%= content_tag(:ul, class: "actions") do %>
+    <% @header.toolbar.buttons do |button| %>
+      <%= content_tag(:li) do %>
+        <%= content_tag(:a, href: button.link) do %>
+          <%= content_tag(:i, class: "zdmi zdmi-#{button.icon}") %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

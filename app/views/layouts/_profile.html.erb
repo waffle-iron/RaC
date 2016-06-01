@@ -1,0 +1,18 @@
+<div class="s-profile">
+  <a href="" data-ma-action="profile-menu-toggle">
+    <div class="sp-pic">
+      <img src="img/blank_avatar.jpg" alt="">
+    </div>
+    <div class="sp-info">
+      <%= @current_user&.name %>
+      <i class="zmdi zmdi-caret-down"></i>
+    </div>
+  </a>
+  <ul class="main-menu">
+    <li>
+      <%= link_to destroy_user_session_path, :method => :delete do %>
+        <i class=  "zmdi zmdi-time-restore"> </i> Salir
+      <% end %>
+    </li>
+  </ul>
+</div>
