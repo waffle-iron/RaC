@@ -1,6 +1,13 @@
-<h1>Editing <%= singular_table_name.titleize %></h1>
+<%% toolbar = Theme::Toolbar.new %>
+<%% toolbar.add_button 'Nuevo', new_<%= singular_table_name %>_path, 'plus' %>
+<%% toolbar.add_button 'Ver', <%= singular_table_name %>_path(@<%= singular_table_name %>), 'eye' %>
+<%% toolbar.add_button 'Lista', <%= index_helper %>_path, 'view-list-alt' %>
+<%% toolbar.add_button 'Eliminar', <%= singular_table_name %>_path(@<%= singular_table_name %>), 'delete' %>
+
+<%%= render '/layouts/block_header' %>
+
+<%%= card ['<%= table_name.titleize %>', 'Editar'], toolbar do %>
 
 <%%= render 'form' %>
 
-<%%= link_to 'Show', @<%= singular_table_name %> %> |
-<%%= link_to 'Back', <%= index_helper %>_path %>
+<%% end %>

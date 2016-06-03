@@ -1,32 +1,23 @@
-<%%= form_for(@<%= singular_table_name %>) do |f| %>
+<%%= form_for(@<%= singular_table_name %>, builder: ThemeBuilder) do |f| %>
   <%% if @<%= singular_table_name %>.errors.any? %>
-    <div id="error_explanation">
-      <h2><%%= pluralize(@<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
-
+    <hr/>
+    <div class="has-error">
       <ul>
       <%% @<%= singular_table_name %>.errors.full_messages.each do |message| %>
-        <li><%%= message %></li>
+        <li><i class="input-helper"><%%= message %></i></li>
       <%% end %>
       </ul>
     </div>
+    <hr/>
   <%% end %>
 
 <% attributes.each do |attribute| -%>
-  <div class="field">
 <% if attribute.password_digest? -%>
-    <%%= f.label :password %><br>
-    <%%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%%= f.label :password_confirmation %><br>
-    <%%= f.password_field :password_confirmation %>
+    <%%= f.password_field :password, label: 'Clave' %>
+    <%%= f.password_field :password_confirmation, label: 'Confirmacion de Clave' %>
 <% else -%>
-    <%%= f.label :<%= attribute.column_name %> %><br>
-    <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+    <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, label: '<%= attribute.human_name %>'%>
 <% end -%>
-  </div>
 <% end -%>
-  <div class="actions">
-    <%%= f.submit %>
-  </div>
+    <%%= f.submit 'Enviar'%>
 <%% end %>

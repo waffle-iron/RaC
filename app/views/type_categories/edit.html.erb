@@ -1,6 +1,13 @@
-<h1>Editing Type Category</h1>
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_type_category_path, 'plus' %>
+<% toolbar.add_button 'Ver', type_category_path(@type_category), 'eye' %>
+<% toolbar.add_button 'Lista', type_categories_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', type_category_path(@type_category), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Type Categories', 'Editar'], toolbar do %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @type_category %> |
-<%= link_to 'Back', type_categories_path %>
+<% end %>

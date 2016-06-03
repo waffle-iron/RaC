@@ -1,5 +1,11 @@
-<h1>New <%= singular_table_name.titleize %></h1>
+<%% toolbar = Theme::Toolbar.new %>
+<%% toolbar.add_button 'Nuevo', new_<%= singular_table_name %>_path, 'plus' %>
+<%% toolbar.add_button 'Lista', <%= index_helper %>_path, 'view-list-alt' %>
+
+<%%= render '/layouts/block_header' %>
+
+<%%= card ['<%= table_name.titleize %>', 'Nuevo'], toolbar do %>
 
 <%%= render 'form' %>
 
-<%%= link_to 'Back', <%= index_helper %>_path %>
+<%% end %>

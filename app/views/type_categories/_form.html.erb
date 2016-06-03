@@ -1,21 +1,16 @@
-<%= form_for(@type_category) do |f| %>
+<%= form_for(@type_category, builder: ThemeBuilder) do |f| %>
   <% if @type_category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@type_category.errors.count, "error") %> prohibited this type_category from being saved:</h2>
-
+    <hr/>
+    <div class="has-error">
       <ul>
       <% @type_category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li><i class="input-helper"><%= message %></i></li>
       <% end %>
       </ul>
     </div>
+    <hr/>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.text_field :name, label: 'Name'%>
+    <%= f.submit 'Enviar'%>
 <% end %>

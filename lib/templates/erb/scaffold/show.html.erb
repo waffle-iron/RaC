@@ -1,11 +1,16 @@
-<p id="notice"><%%= notice %></p>
+<%% toolbar = Theme::Toolbar.new %>
+<%% toolbar.add_button 'Nuevo', new_<%= singular_table_name %>_path, 'plus' %>
+<%% toolbar.add_button 'Ver', <%= singular_table_name %>_path(@<%= singular_table_name %>), 'eye' %>
+<%% toolbar.add_button 'Editar', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), 'edit' %>
+<%% toolbar.add_button 'Lista', <%= index_helper %>_path, 'view-list-alt' %>
+<%% toolbar.add_button 'Eliminar', <%= singular_table_name %>_path(@<%= singular_table_name %>), 'delete' %>
+
+<%%= render '/layouts/block_header' %>
+
+<%%= card ['<%= table_name.titleize %>', 'Detalles'], toolbar do %>
 
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
-<p>
-  <strong><%= attribute.human_name %>:</strong>
-  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
-</p>
+  <%%= card_text_field_readonly @<%= singular_table_name %>.<%=attribute.column_name %>, label: '<%= attribute.human_name %>' %>
+<% end %>
 
-<% end -%>
-<%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
-<%%= link_to 'Back', <%= index_helper %>_path %>
+<%% end %>

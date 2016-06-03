@@ -1,0 +1,11 @@
+<%= content_tag(:ul, class: "actions") do %>
+  <% toolbar.buttons.each do |button| %>
+    <%= content_tag(:li) do %>
+      <% options = {'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'data-original-title' => button.title, href: button.link} %>
+      <% options.merge!({data: {confirm: '¿Está seguro?'}, 'data-method' => :delete}) if button.icon == 'delete' %>
+      <%= content_tag(:a, nil,  options) do %>
+        <%= content_tag(:i, nil, class: "zmdi zmdi-#{button.icon}") %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -12,4 +12,6 @@
 //= require ./theme/bootstrap-growl.min.js
 //= require ./theme//sweetalert.min.js
 //= require ./theme/jquery.mCustomScrollbar.concat.min.js
+//= require ./theme/jquery.bootgrid.updated.js
+//= require ./theme/tables.js
 //= require ./theme/app.js

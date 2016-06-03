@@ -1,5 +1,11 @@
-<h1>New Type Category</h1>
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_type_category_path, 'plus' %>
+<% toolbar.add_button 'Lista', type_categories_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Type Categories', 'Nuevo'], toolbar do %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', type_categories_path %>
+<% end %>

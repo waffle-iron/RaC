@@ -11,6 +11,18 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def text_field(method, options = {})
+    label_option = options[:label]
+    options = options.except(:label).merge({class:'input-sm form-control fg-input'})
+    super_content = super
+    @template.content_tag :div, class: 'form-group fg-float' do
+      @template.content_tag :div, class: 'fg-line' do
+        @template.concat super_content
+        @template.concat label label_option, class: 'fg-label' if label_option
+      end
+    end
+  end
+
   def password_field(method, options = {})
     label_option = options[:label]
     options = options.except(:label).merge({class:'input-sm form-control fg-input'})

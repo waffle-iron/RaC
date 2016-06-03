@@ -5,7 +5,7 @@ class Theme::Toolbar
   end
 
   def add_button(title, link, icon)
-    self.buttons + [Button.new(title, link, icon)]
+    self.buttons << Button.new(title, link, icon)
   end
 
   class Button

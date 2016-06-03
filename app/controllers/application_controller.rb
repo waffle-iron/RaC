@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def theme_objects
-    @header = Theme::Header.new
+    # @header = Theme::Header.new
     @title = "RaC BackOffice"
   end
 

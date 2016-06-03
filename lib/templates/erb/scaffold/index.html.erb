@@ -1,31 +1,42 @@
-<p id="notice"><%%= notice %></p>
+<%% toolbar = Theme::Toolbar.new %>
+<%% toolbar.add_button 'Nuevo', new_<%= singular_table_name %>_path, 'plus' %>
+<%% toolbar.add_button 'Lista', <%= index_helper %>_path, 'view-list-alt' %>
 
-<h1>Listing <%= plural_table_name.titleize %></h1>
+<%%= render '/layouts/block_header' %>
 
-<table>
-  <thead>
-    <tr>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
-      <th><%= attribute.human_name %></th>
-<% end -%>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%%= card ['<%= table_name.titleize %>', 'Listado'], toolbar do %>
+  <script type="text/javascript">
+   var commands = function(column, row) {
+     var show_command = '<%%= table_button 'Ver', <%= singular_table_name %>_path('rowId'), 'eye' %>';
+     var edit_command = '<%%= table_button 'Editar', edit_<%= singular_table_name %>_path('rowId'), 'edit' %>';
+     var delete_command = '<%%= table_button 'Eliminar', <%= singular_table_name %>_path('rowId'), 'delete', {'redirect_to' => '<%= index_helper %>'}, 'command-delete' %>';
 
-  <tbody>
-    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+     return (show_command + edit_command + delete_command).replace(new RegExp('rowId', 'g'), row.id);
+     };
+  </script>
+  <table id="data-table-command" class="table table-striped table-vmiddle">
+    <thead>
       <tr>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <th data-column-id="id" data-type="numeric">Id</th>
+<% attributes.reject(&:password_digest?).each do |attribute| %>
+        <th data-column-id="<%= attribute.name %>" <%= "data-type='numeric'" if attribute.field_type == :number_field  %>>
+          <%= attribute.human_name %>
+        </th>
+<% end %>
+        <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+        <td><%%= <%= singular_table_name %>.id %></td>
+<% attributes.reject(&:password_digest?).each do |attribute| %>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-<% end -%>
-        <td><%%= link_to 'Show', <%= singular_table_name %> %></td>
-        <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></td>
-        <td><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
+        <td>
+        </td>
       </tr>
     <%% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>
+    </tbody>
+  </table>
+<%% end %>

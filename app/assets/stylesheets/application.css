@@ -17,6 +17,7 @@
  *= require theme/sweetalert
  *= require theme/material-design-iconic-font
  *= require theme/jquery.mCustomScrollbar
+ *= require theme/jquery.bootgrid.min
  *= require theme/app_1
  *= require theme/app_2
  */
