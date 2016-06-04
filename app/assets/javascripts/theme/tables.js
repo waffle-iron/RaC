@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     $("#data-table-command").on("loaded.rs.jquery.bootgrid", function(){
       bootgrid.find(".command-edit").on("click", function(e){
-        window.href = e.delegateTarget.getAttribute("href");
+        window.location.href = e.delegateTarget.getAttribute("href");
       }).end().find(".command-delete").on("click", function(e){
         $.ajax({
           url: e.delegateTarget.getAttribute("href"),
