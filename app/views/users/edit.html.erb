@@ -8,6 +8,28 @@
 
 <%= card ['Users', 'Editar'], toolbar do %>
 
-<%= render 'form' %>
+<%= form_for(@user, builder: ThemeBuilder) do |f| %>
+  <% if @user.errors.any? %>
+    <hr/>
+    <div class="has-error">
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><i class="input-helper"><%= message %></i></li>
+      <% end %>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+
+    <%= f.text_field :name, label: 'Name'%>
+    <%= f.text_field :dni, label: 'Dni'%>
+    <%= f.text_field :phone, label: 'Phone'%>
+    <%= f.text_field :fax, label: 'Fax'%>
+    <%= f.text_field :mobile, label: 'Mobile'%>
+    <%= f.text_field :email, label: 'Email'%>
+    <%= f.text_field :address, label: 'Address'%>
+    <%= f.text_field :photo, label: 'Photo'%>
+    <%= f.submit 'Enviar'%>
+<% end %>
 
 <% end %>

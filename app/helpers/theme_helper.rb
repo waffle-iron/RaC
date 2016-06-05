@@ -72,15 +72,20 @@ module ThemeHelper
 
   def side_menu(&body)
     content = capture(&body)
-    content_tag(:aside, {id: 'sidebar',class: 'sidebar c-overflow'}) do
-      content_tag :ul, nil, class: 'main-menu' do
+
+    content = content_tag :ul, nil, class: 'main-menu' do
         concat content
       end
+    content = side_menu_profile + content
+
+    content_tag(:aside, {id: 'sidebar',class: 'sidebar c-overflow'}) do
+      content
     end
   end
 
-  def side_button(title = '', link = '', icon = '')
-    content = content_tag(:a, nil, {href: link}) do
+  def side_button(title = '', link = '', icon = '', options = {} )
+    options.merge!({href: link})
+    content = content_tag(:a, nil, options) do
       concat content_tag(:i, nil, class: "zmdi zmdi-#{icon}")
       concat title
     end
@@ -111,6 +116,29 @@ module ThemeHelper
     end
     content_tag(:li, nil) do
       concat content
+    end
+  end
+
+  def side_menu_profile
+    picture = content_tag(:div, class: 'sp-pic') do
+      content_tag(:img, nil, {src: '/img/blank_avatar.jpg'})
+    end
+
+    profile = content_tag(:div, class: 'sp-info') do
+      concat current_user&.name
+      concat content_tag(:i, nil, class: "zmdi zmdi-caret-down")
+    end
+
+    menu = content_tag(:ul, nil, class: 'main-menu') do
+      side_button('Salir', destroy_user_session_path, 'time-restore', { 'data-confirm' => "Esta seguro?" , 'data-method' => :delete , 'method' => :delete})
+    end
+
+    content_tag(:div, class: 's-profile') do
+      content_tag(:a, nil, {href: '', 'data-ma-action' => 'profile-menu-toggle'}) do
+        concat picture
+        concat profile
+        concat menu
+      end
     end
   end
 

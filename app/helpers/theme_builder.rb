@@ -13,7 +13,7 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
 
   def text_field(method, options = {})
     label_option = options[:label]
-    options = options.except(:label).merge({class:'input-sm form-control fg-input'})
+    options = options.except(:label).merge({class:'input-sm form-control fg-input', autocomplete: 'off'})
     super_content = super
     @template.content_tag :div, class: 'form-group fg-float' do
       @template.content_tag :div, class: 'fg-line' do
