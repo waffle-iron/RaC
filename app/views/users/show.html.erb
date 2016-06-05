@@ -1,0 +1,23 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_user_path, 'plus' %>
+<% toolbar.add_button 'Ver', user_path(@user), 'eye' %>
+<% toolbar.add_button 'Editar', edit_user_path(@user), 'edit' %>
+<% toolbar.add_button 'Lista', users_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', user_path(@user), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Users', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @user.name, label: 'Name' %>
+  <%= card_text_field_readonly @user.dni, label: 'Dni' %>
+  <%= card_text_field_readonly @user.phone, label: 'Phone' %>
+  <%= card_text_field_readonly @user.fax, label: 'Fax' %>
+  <%= card_text_field_readonly @user.mobile, label: 'Mobile' %>
+  <%= card_text_field_readonly @user.email, label: 'Email' %>
+  <%= card_text_field_readonly @user.address, label: 'Address' %>
+  <%= card_text_field_readonly @user.photo, label: 'Photo' %>
+  <%= card_text_field_readonly @user.password, label: 'Password' %>
+
+
+<% end %>

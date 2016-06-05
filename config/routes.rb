@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-  resources :type_categories
-  resources :type_categories
-  resources :type_categories
-  resources :type_categories
-  resources :type_categories
-  resources :type_categories
+  resources :users
   resources :type_categories
   devise_for :users
   root :to => "admin#index"

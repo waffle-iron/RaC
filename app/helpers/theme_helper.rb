@@ -70,4 +70,48 @@ module ThemeHelper
     end
   end
 
+  def side_menu(&body)
+    content = capture(&body)
+    content_tag(:aside, {id: 'sidebar',class: 'sidebar c-overflow'}) do
+      content_tag :ul, nil, class: 'main-menu' do
+        concat content
+      end
+    end
+  end
+
+  def side_button(title = '', link = '', icon = '')
+    content = content_tag(:a, nil, {href: link}) do
+      concat content_tag(:i, nil, class: "zmdi zmdi-#{icon}")
+      concat title
+    end
+    content_tag(:li, nil) do
+      concat content
+    end
+  end
+
+  def side_submenu(title = '', icon = '', &body)
+    submenu_content = content_tag(:a, nil, 'data-ma-action' => 'submenu-toggle') do
+      concat content_tag(:i, nil, class: "zmdi zmdi-#{icon}")
+      concat title
+    end
+
+    content = content_tag :ul do
+        concat capture(&body)
+      end
+
+    content_tag :li, nil, class: 'sub-menu' do
+      concat submenu_content
+      concat content
+    end
+  end
+
+  def side_submenu_button(title = '', link = '')
+    content = content_tag(:a, nil, {href: link}) do
+      concat title
+    end
+    content_tag(:li, nil) do
+      concat content
+    end
+  end
+
 end
