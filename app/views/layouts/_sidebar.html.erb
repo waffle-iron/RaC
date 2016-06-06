@@ -1,6 +1,7 @@
 <%= side_menu do %>
   <%= side_button 'Inicio', root_path, 'home' %>
   <%= side_submenu 'Administracion', 'codepen' do %>
+    <%= side_submenu_button 'Empresas', companies_path %>
     <%= side_submenu_button 'Usuarios', users_path %>
   <% end  %>
 <% end  %>

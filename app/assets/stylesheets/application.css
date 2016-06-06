@@ -18,6 +18,8 @@
  *= require theme/material-design-iconic-font
  *= require theme/jquery.bootgrid.min
  *= require theme/jquery.mCustomScrollbar
+ *= require theme/bootstrap-select
+ *= require theme/chosen
  *= require theme/app_1
  *= require theme/app_2
  */

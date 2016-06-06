@@ -14,4 +14,6 @@
 //= require ./theme/jquery.bootgrid.updated.js
 //= require ./theme/tables.js
 //= require ./theme/jquery.mCustomScrollbar.concat.min.js
+//= require ./theme/bootstrap-select.js
+//= require ./theme/chosen.jquery.js
 //= require ./theme/app.js

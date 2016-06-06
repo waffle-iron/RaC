@@ -52,4 +52,21 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
     options = options.merge({type: :submit, class: 'btn btn-primary btn-sm m-t-10 waves-effect'})
     @template.content_tag :button, value, options
   end
+
+  def collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
+    label_option = options[:label]
+    html_options = options.except(:label).merge({class:'chosen', 'data-placeholder' => 'Seleccione ...'})
+
+    label = @template.content_tag(:p, nil, class: 'f-500 c-black m-b-15') do
+      label_option if label_option
+    end
+
+    super_content = super
+    @template.content_tag :div, class: 'form-group fg-float' do
+      @template.content_tag :div, class: 'fg-line' do
+        @template.concat label if label_option
+        @template.concat super_content
+      end
+    end
+  end
 end

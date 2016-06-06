@@ -1,0 +1,15 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_company_type_path, 'plus' %>
+<% toolbar.add_button 'Ver', company_type_path(@company_type), 'eye' %>
+<% toolbar.add_button 'Editar', edit_company_type_path(@company_type), 'edit' %>
+<% toolbar.add_button 'Lista', company_types_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', company_type_path(@company_type), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Company Types', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @company_type.name, label: 'Name' %>
+
+
+<% end %>

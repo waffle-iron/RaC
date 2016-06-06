@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_company_path, 'plus' %>
+<% toolbar.add_button 'Lista', companies_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Companies', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

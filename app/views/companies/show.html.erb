@@ -1,0 +1,24 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_company_path, 'plus' %>
+<% toolbar.add_button 'Ver', company_path(@company), 'eye' %>
+<% toolbar.add_button 'Editar', edit_company_path(@company), 'edit' %>
+<% toolbar.add_button 'Lista', companies_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', company_path(@company), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Companies', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @company.name, label: 'Nombre' %>
+  <%= card_text_field_readonly @company.tradename, label: 'Nombre Comercial' %>
+  <%= card_text_field_readonly @company.address, label: 'Direccion' %>
+  <%= card_text_field_readonly @company.zipcode, label: 'Zip' %>
+  <%= card_text_field_readonly @company.city, label: 'Ciudad' %>
+  <%= card_text_field_readonly @company.provincecountry, label: 'Provincia / Pais' %>
+  <%= card_text_field_readonly @company.fax, label: 'Fax' %>
+  <%= card_text_field_readonly @company.email, label: 'Email' %>
+  <%= card_text_field_readonly @company.phone, label: 'Telefono' %>
+  <%= card_text_field_readonly @company.company_type&.name, label: 'Tipo' %>
+
+
+<% end %>

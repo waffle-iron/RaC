@@ -1,0 +1,25 @@
+<%= form_for(@company, builder: ThemeBuilder) do |f| %>
+  <% if @company.errors.any? %>
+    <hr/>
+    <div class="has-error">
+      <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><i class="input-helper"><%= message %></i></li>
+      <% end %>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+
+    <%= f.text_field :name, label: 'Nombre'%>
+    <%= f.text_field :tradename, label: 'Nombre Comercial'%>
+    <%= f.text_field :address, label: 'Direccion'%>
+    <%= f.text_field :zipcode, label: 'Zip'%>
+    <%= f.text_field :city, label: 'Ciudad'%>
+    <%= f.text_field :provincecountry, label: 'Provincia / Pais'%>
+    <%= f.text_field :fax, label: 'Fax'%>
+    <%= f.text_field :email, label: 'Email'%>
+    <%= f.text_field :phone, label: 'Telefono'%>
+    <%= f.collection_select :company_type_id, CompanyType.order(:name), :id, :name, include_blank: true, label: 'Tipo'%>
+    <%= f.submit 'Enviar'%>
+<% end %>
