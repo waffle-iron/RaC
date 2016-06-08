@@ -1,0 +1,7 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_zone_path, 'plus' %>
+<% toolbar.add_button 'Lista', zones_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= render partial: 'zone_list', locals: {toolbar: toolbar, title: ['Zonas', 'Listado'], zones: @zones}%>

@@ -1,0 +1,13 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_zone_path, 'plus' %>
+<% toolbar.add_button 'Ver', zone_path(@zone), 'eye' %>
+<% toolbar.add_button 'Lista', zones_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', zone_path(@zone), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Zonas', 'Editar'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

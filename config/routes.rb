@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :zones
   resources :companies
   resources :users
   resources :type_categories

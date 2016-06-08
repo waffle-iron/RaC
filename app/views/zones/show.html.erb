@@ -1,0 +1,21 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_zone_path, 'plus' %>
+<% toolbar.add_button 'Ver', zone_path(@zone), 'eye' %>
+<% toolbar.add_button 'Editar', edit_zone_path(@zone), 'edit' %>
+<% toolbar.add_button 'Lista', zones_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', zone_path(@zone), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Zonas', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @zone.parent_zone&.name, label: 'Zone' %>
+  <%= card_text_field_readonly @zone.name, label: 'Name' %>
+
+<% end %>
+
+
+<% toolbar2 = Theme::Toolbar.new %>
+<% toolbar2.add_button 'Nuevo Sub Zona', new_zone_path(parent_zone_id: @zone.id), 'plus' %>
+
+<%= render partial: 'zone_list', locals: {toolbar: toolbar2, title: ['Sub - Zonas', 'Listado'], zones: @zone.zones}%>

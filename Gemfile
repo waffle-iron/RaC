@@ -48,3 +48,5 @@ group :development do
 end
 gem 'devise'
 gem 'pg'
+gem 'annotate'
+gem 'active_model_serializers'

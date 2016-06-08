@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_zone_path, 'plus' %>
+<% toolbar.add_button 'Lista', zones_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Zonas', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

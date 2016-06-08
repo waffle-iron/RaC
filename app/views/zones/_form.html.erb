@@ -1,0 +1,24 @@
+<%= form_for(@zone, builder: ThemeBuilder) do |f| %>
+  <% if @zone.errors.any? %>
+    <hr/>
+    <div class="has-error">
+      <ul>
+      <% @zone.errors.full_messages.each do |message| %>
+        <li><i class="input-helper"><%= message %></i></li>
+      <% end %>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+
+
+
+  <% if @zone.parent_zone %>
+    <%= card_text_field_readonly @zone&.parent_zone&.name, label: 'Zona'%>
+    <%= f.hidden_field :parent_zone_id %>
+
+  <% end %>
+
+  <%= f.text_field :name, label: 'Nombre'%>
+  <%= f.submit 'Enviar'%>
+<% end %>
