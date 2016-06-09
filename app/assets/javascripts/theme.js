@@ -16,5 +16,5 @@
 //= require ./theme/jquery.mCustomScrollbar.concat.min.js
 //= require ./theme/bootstrap-select.js
 //= require ./theme/chosen.jquery.js
-//= require ./theme/bootstrap-treeview.min.js
+//= require ./theme/treed.js
 //= require ./theme/app.js

@@ -101,8 +101,8 @@ module ThemeHelper
     end
 
     content = content_tag :ul do
-        concat capture(&body)
-      end
+      concat capture(&body)
+    end
 
     content_tag :li, nil, class: 'sub-menu' do
       concat submenu_content
@@ -142,4 +142,32 @@ module ThemeHelper
     end
   end
 
+  def tree(array, title_key, value_key, node_key, parent_node_key, link_template = "")
+    content_tag :ul, nil do
+      array.each do |node|
+        concat tree_node(node, title_key, value_key, node_key, link_template) unless node[parent_node_key]
+      end
+    end
+  end
+
+  def tree_node(node, title_key, value_key, node_key, link_template)
+    link = link_template.gsub(":#{value_key.to_s}", node[value_key].to_s)
+    link =  content_tag(:a, nil, href: link) do
+      concat node[title_key]
+    end
+
+    subnodes = node.send(node_key)
+
+    if subnodes
+      content = content_tag(:ul, nil) do
+        subnodes.each do |sub_node|
+          concat tree_node(sub_node, title_key, value_key, node_key, link_template)
+        end
+      end
+    end
+    content_tag(:li, nil) do
+      concat link
+      concat content if subnodes
+    end
+  end
 end
