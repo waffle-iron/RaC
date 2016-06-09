@@ -2,13 +2,11 @@ class InsurancesController < ApplicationController
   before_action :set_insurance, only: [:show, :edit, :update, :destroy]
 
   # GET /insurances
-  # GET /insurances.json
   def index
     @insurances = Insurance.all
   end
 
   # GET /insurances/1
-  # GET /insurances/1.json
   def show
   end
 
@@ -22,43 +20,32 @@ class InsurancesController < ApplicationController
   end
 
   # POST /insurances
-  # POST /insurances.json
   def create
     @insurance = Insurance.new(insurance_params)
 
-    respond_to do |format|
-      if @insurance.save
-        format.html { redirect_to @insurance, notice: 'Insurance was successfully created.' }
-        format.json { render :show, status: :created, location: @insurance }
-      else
-        format.html { render :new }
-        format.json { render json: @insurance.errors, status: :unprocessable_entity }
-      end
+    if @insurance.save
+      @insurance = Insurance.new
+      #redirect_to insurances_url, notice: 'Insurance was successfully created.'
+     flash[:notice] = 'Insurance was successfully created.'
+     render :new
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /insurances/1
-  # PATCH/PUT /insurances/1.json
   def update
-    respond_to do |format|
-      if @insurance.update(insurance_params)
-        format.html { redirect_to @insurance, notice: 'Insurance was successfully updated.' }
-        format.json { render :show, status: :ok, location: @insurance }
-      else
-        format.html { render :edit }
-        format.json { render json: @insurance.errors, status: :unprocessable_entity }
-      end
+    if @insurance.update(insurance_params)
+      redirect_to insurances_url, notice: 'Insurance was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /insurances/1
-  # DELETE /insurances/1.json
   def destroy
     @insurance.destroy
-    respond_to do |format|
-      format.html { redirect_to insurances_url, notice: 'Insurance was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to insurances_url, status: :see_other, notice: 'Insurance was successfully destroyed.'
   end
 
   private
@@ -67,8 +54,8 @@ class InsurancesController < ApplicationController
       @insurance = Insurance.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow a trusted parameter "white list" through.
     def insurance_params
-      params.require(:insurance).permit(:name)
+      params[:insurance]
     end
 end
