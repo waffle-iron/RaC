@@ -1,0 +1,15 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_insurance_path, 'plus' %>
+<% toolbar.add_button 'Ver', insurance_path(@insurance), 'eye' %>
+<% toolbar.add_button 'Editar', edit_insurance_path(@insurance), 'edit' %>
+<% toolbar.add_button 'Lista', insurances_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', insurance_path(@insurance), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Seguros', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @insurance.name, label: 'Name' %>
+
+
+<% end %>

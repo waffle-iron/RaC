@@ -1,0 +1,15 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_tax_path, 'plus' %>
+<% toolbar.add_button 'Ver', tax_path(@tax), 'eye' %>
+<% toolbar.add_button 'Editar', edit_tax_path(@tax), 'edit' %>
+<% toolbar.add_button 'Lista', taxes_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', tax_path(@tax), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Impuestos', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @tax.name, label: 'Nombre' %>
+
+
+<% end %>

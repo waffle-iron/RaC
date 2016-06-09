@@ -1,0 +1,13 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_tax_path, 'plus' %>
+<% toolbar.add_button 'Ver', tax_path(@tax), 'eye' %>
+<% toolbar.add_button 'Lista', taxes_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', tax_path(@tax), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Impuestos', 'Editar'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :taxes
+  resources :extras
+  resources :insurances
   resources :zones
   resources :companies
   resources :users

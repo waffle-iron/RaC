@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_extra_path, 'plus' %>
+<% toolbar.add_button 'Lista', extras_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Extras', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

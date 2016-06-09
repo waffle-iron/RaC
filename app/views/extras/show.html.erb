@@ -1,0 +1,15 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_extra_path, 'plus' %>
+<% toolbar.add_button 'Ver', extra_path(@extra), 'eye' %>
+<% toolbar.add_button 'Editar', edit_extra_path(@extra), 'edit' %>
+<% toolbar.add_button 'Lista', extras_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', extra_path(@extra), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Extras', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @extra.name, label: 'Name' %>
+
+
+<% end %>

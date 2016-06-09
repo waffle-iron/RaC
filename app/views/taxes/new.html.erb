@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_tax_path, 'plus' %>
+<% toolbar.add_button 'Lista', taxes_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Impuestos', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

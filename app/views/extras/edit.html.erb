@@ -1,0 +1,13 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_extra_path, 'plus' %>
+<% toolbar.add_button 'Ver', extra_path(@extra), 'eye' %>
+<% toolbar.add_button 'Lista', extras_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', extra_path(@extra), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Extras', 'Editar'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

@@ -2,7 +2,10 @@
   <%= side_button 'Inicio', root_path, 'home' %>
   <%= side_submenu 'Administracion', 'codepen' do %>
     <%= side_submenu_button 'Empresas', companies_path %>
+	<%= side_submenu_button 'Extras', extras_path %>
+	<%= side_submenu_button 'Impuestos', taxes_path %>
     <%= side_submenu_button 'Usuarios', users_path %>
+    <%= side_submenu_button 'Seguros', insurances_path %>
     <%= side_submenu_button 'Zonas', zones_path %>
   <% end  %>
 <% end  %>

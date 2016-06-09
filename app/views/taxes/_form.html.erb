@@ -1,0 +1,16 @@
+<%= form_for(@tax, builder: ThemeBuilder) do |f| %>
+  <% if @tax.errors.any? %>
+    <hr/>
+    <div class="has-error">
+      <ul>
+      <% @tax.errors.full_messages.each do |message| %>
+        <li><i class="input-helper"><%= message %></i></li>
+      <% end %>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+
+    <%= f.text_field :name, label: 'Nombre'%>
+    <%= f.submit 'Enviar'%>
+<% end %>

@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_insurance_path, 'plus' %>
+<% toolbar.add_button 'Lista', insurances_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Seguros', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>
