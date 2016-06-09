@@ -56,6 +56,6 @@ class ExtrasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def extra_params
-      params[:extra]
+      params.require(:extra).permit(:name)
     end
 end

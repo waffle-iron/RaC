@@ -56,6 +56,6 @@ class InsurancesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def insurance_params
-      params[:insurance]
+      params.require(:insurance).permit(:name)
     end
 end

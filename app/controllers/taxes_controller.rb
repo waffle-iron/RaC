@@ -56,6 +56,6 @@ class TaxesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tax_params
-      params[:tax]
+      params.require(:tax).permit(:name)
     end
 end
