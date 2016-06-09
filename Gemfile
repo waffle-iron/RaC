@@ -49,4 +49,3 @@ end
 gem 'devise'
 gem 'pg'
 gem 'annotate'
-gem 'active_model_serializers', '~> 0.9.5', require: (ARGV[2] == 'scaffold' ? 'active_model_serializers' : false)
