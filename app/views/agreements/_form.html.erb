@@ -12,14 +12,8 @@
   <% end %>
 
   <%= f.collection_select :company_id, Company.order(:name), :id, :name, include_blank: true, label: 'Empresa'%>
-  <%= f.text_field :sections, label: 'Tramos ( Ej: 1, 3, 5, 9 )'%>
-  <%= f.text_field :groups, label: 'Grupos ( Ej: A, B, C, D, E )'%>
   <%= f.date_select :start_date, label: 'Vigente desde'%>
   <%= f.date_select :end_date, label: 'Vigente hasta'%>
-  <%= f.number_field :days_min, label: 'Dias Minimo'%>
-  <%= f.number_field :days_max, label: 'Dias Maximo'%>
-  <%= f.number_field :discount_max, label: 'Descuento Maximo'%>
-  <%= f.check_box :includes_igic, label: 'Incluir IGIC'%>
 
     <%= f.submit 'Enviar'%>
 <% end %>
