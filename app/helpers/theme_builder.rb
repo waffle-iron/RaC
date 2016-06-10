@@ -24,6 +24,19 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def number_field(method, options = {})
+    label_option = options[:label]
+    options = options.except(:label).merge({autocomplete: 'off'})
+    options = options.except(:label).merge({class:'input-sm form-control fg-input'}) unless options[:class]
+    super_content = super
+    @template.content_tag :div, class: 'form-group fg-float' do
+      @template.content_tag :div, class: 'fg-line' do
+        @template.concat super_content
+        @template.concat label label_option, class: 'fg-label' if label_option
+      end
+    end
+  end
+
   def password_field(method, options = {})
     label_option = options[:label]
     options = options.except(:label).merge({class:'input-sm form-control fg-input'})
@@ -36,15 +49,18 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def check_box(method, options = {}, checked_value = '1', unchecked_value = '0')
+  def check_box(method, options = {}, checked_value = "true", unchecked_value = "false")
     label_option = options[:label]
     options = options.except(:label)
-    super_content = super
-    @template.content_tag :div, class: 'checkbox m-b-15' do
-      @template.content_tag :label do
-        @template.concat super_content
-        @template.concat @template.content_tag :i, '', class: 'input-helper'
-        @template.concat label_option if label_option
+    super_content = ActionView::Helpers::Tags::CheckBox.new(object_name, method, self, checked_value, unchecked_value, options).render
+    @template.content_tag :div, class: 'form-group fg-float checkbox m-b-15' do
+      @template.content_tag :div, class: 'fg-line' do
+        @template.content_tag :label do
+          @template.concat super_content
+          @template.concat @template.content_tag :i, '', class: 'input-helper'
+          @template.concat label_option if label_option
+          @template.concat @template.content_tag :br
+        end
       end
     end
   end

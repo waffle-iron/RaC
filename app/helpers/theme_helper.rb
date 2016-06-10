@@ -53,6 +53,21 @@ module ThemeHelper
     end
   end
 
+  def card_check_box(value, options = {}, checked_value = "true", unchecked_value = "false")
+    label_option = options[:label]
+    options = options.except(:label)
+    options.merge!({value: value, checked: value,  type: 'checkbox', disabled: true, readonly: true})
+    super_content = content_tag(:input, nil, options)
+    #super_content = ActionView::Helpers::Tags::CheckBox.new(object_name, , self, checked_value, unchecked_value, options).render
+    content_tag :div, class: 'checkbox m-b-15' do
+      content_tag :label do
+        concat super_content
+        concat content_tag :i, '', class: 'input-helper'
+        concat label_option if label_option
+      end
+    end
+  end
+
   def card_text_field_readonly(value, options = {})
     options = options.merge(readonly: 'true')
     card_text_field value, options

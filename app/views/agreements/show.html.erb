@@ -15,5 +15,9 @@
   <%= card_text_field_readonly @agreement.start_date.to_date.strftime("%d-%m-%Y"), label: 'Vigente desde' %>
   <%= card_text_field_readonly @agreement.end_date.to_date.strftime("%d-%m-%Y"), label: 'Vigente hasta' %>
 
+  <%= card_text_field_readonly @agreement.days_min, label: 'Dias Minimo'%>
+  <%= card_text_field_readonly @agreement.days_max, label: 'Dias Maximo'%>
+  <%= card_text_field_readonly @agreement.discount_max, label: 'Descuento Maximo'%>
+  <%= card_check_box @agreement.includes_igic, label: 'Incluir IGIC'%>
 
 <% end %>

@@ -56,6 +56,6 @@ class AgreementsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def agreement_params
-      params.require(:agreement).permit(:company_id, :sections, :groups, :start_date, :end_date)
+      params.require(:agreement).permit(:company_id, :sections, :groups, :start_date, :end_date, :includes_igic, :discount_max, :days_max, :days_min)
     end
 end
