@@ -17,4 +17,5 @@
 //= require ./theme/bootstrap-select.js
 //= require ./theme/chosen.jquery.js
 //= require ./theme/treed.js
+//= require ./theme/bootstrap-datetimepicker.min.js
 //= require ./theme/app.js

@@ -1,0 +1,21 @@
+<%= form_for(@agreement, builder: ThemeBuilder) do |f| %>
+  <% if @agreement.errors.any? %>
+    <hr/>
+    <div class="has-error">
+      <ul>
+      <% @agreement.errors.full_messages.each do |message| %>
+        <li><i class="input-helper"><%= message %></i></li>
+      <% end %>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+
+    <%= f.collection_select :company_id, Company.order(:name), :id, :name, include_blank: true, label: 'Empresa'%>
+    <%= f.text_field :sections, label: 'Tramos ( Ej: 1, 3, 5, 9 )'%>
+    <%= f.text_field :groups, label: 'Grupos ( Ej: A, B, C, D, E )'%>
+    <%= f.date_select :start_date, label: 'Vigente desde'%>
+    <%= f.date_select :end_date, label: 'Vigente hasta'%>
+
+    <%= f.submit 'Enviar'%>
+<% end %>

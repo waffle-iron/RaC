@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def theme_objects
     # @header = Theme::Header.new
-    @title = "RaC BackOffice"
+    @title = ""
   end
 
   def after_sign_out_path_for(resource_or_scope)

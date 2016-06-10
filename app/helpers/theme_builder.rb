@@ -13,7 +13,8 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
 
   def text_field(method, options = {})
     label_option = options[:label]
-    options = options.except(:label).merge({class:'input-sm form-control fg-input', autocomplete: 'off'})
+    options = options.except(:label).merge({autocomplete: 'off'})
+    options = options.except(:label).merge({class:'input-sm form-control fg-input'}) unless options[:class]
     super_content = super
     @template.content_tag :div, class: 'form-group fg-float' do
       @template.content_tag :div, class: 'fg-line' do
@@ -67,6 +68,35 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
         @template.concat label if label_option
         @template.concat super_content
       end
+    end
+  end
+
+  def date_select(method, options = {})
+    existing_date = object.send(method)
+    # formatted_date = existing_date.to_date.strftime("%F") if existing_date.present?
+    formatted_date = existing_date.to_date.strftime("%d-%m-%Y") if existing_date.present?
+
+    label_option = options[:label]
+    options = options.except(:label).merge({class:'form-control date-picker', autocomplete: 'off', value: formatted_date})
+    options.merge!({:"data-date-format" => "DD-MM-YYYY"})
+    super_content = ActionView::Helpers::Tags::TextField.new(object_name, method, self, options).render
+    @template.content_tag :div, class: 'form-group fg-float' do
+      @template.content_tag :div, class: 'fg-line' do
+        @template.concat super_content
+        @template.concat label label_option, class: 'fg-label' if label_option
+      end
+    end
+  end
+
+  def xdate_select(method, options = {}, html_options = {})
+    existing_date = @object.send(method)
+    formatted_date = existing_date.to_date.strftime("%F") if existing_date.present?
+    options.merge!({value: formatted_date})
+    options.merge!({class: "form-control date-picker"})
+    options.merge!({:"data-date-format" => "DD-MM-YYYY"})
+    @template.content_tag(:div, :class => "form-group") do
+      # @template.concat ActionView::Helpers::Tags::TextField.new(object_name, method, self, options).render
+      text_field(method, options )
     end
   end
 end

@@ -21,6 +21,7 @@
  *= require theme/bootstrap-select
  *= require theme/chosen
  *= require theme/treed
+ *= require theme/bootstrap-datetimepicker.min
  *= require theme/app_1
  *= require theme/app_2
  */

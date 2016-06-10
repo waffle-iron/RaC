@@ -1,0 +1,19 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_agreement_path, 'plus' %>
+<% toolbar.add_button 'Ver', agreement_path(@agreement), 'eye' %>
+<% toolbar.add_button 'Editar', edit_agreement_path(@agreement), 'edit' %>
+<% toolbar.add_button 'Lista', agreements_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', agreement_path(@agreement), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Agreements', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @agreement.company&.name, label: 'Empresa' %>
+  <%= card_text_field_readonly @agreement.sections, label: 'Tramos' %>
+  <%= card_text_field_readonly @agreement.groups, label: 'Grupos' %>
+  <%= card_text_field_readonly @agreement.start_date.to_date.strftime("%d-%m-%Y"), label: 'Vigente desde' %>
+  <%= card_text_field_readonly @agreement.end_date.to_date.strftime("%d-%m-%Y"), label: 'Vigente hasta' %>
+
+
+<% end %>

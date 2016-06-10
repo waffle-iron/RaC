@@ -7,7 +7,7 @@
 
 <%= render '/layouts/block_header' %>
 
-<%= card ['Companies', 'Detalles'], toolbar do %>
+<%= card ['Empresas', 'Detalles'], toolbar do %>
 
   <%= card_text_field_readonly @company.name, label: 'Nombre' %>
   <%= card_text_field_readonly @company.tradename, label: 'Nombre Comercial' %>
