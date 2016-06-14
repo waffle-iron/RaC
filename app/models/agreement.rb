@@ -12,7 +12,7 @@
 
 class Agreement < ActiveRecord::Base
   belongs_to :company
-  has_many :agreement_zones
-  has_many :zones, through: :agreement_zones
+  has_many :agreement_zones, dependent: :destroy
+  has_many :zones, through: :agreement_zones, dependent: :destroy
 
 end

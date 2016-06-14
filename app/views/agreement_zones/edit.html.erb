@@ -9,6 +9,6 @@
   <%= card_text_field_readonly @agreement_zone.zone&.name, label: 'Zona' %>
 <% end %>
 
-<%= card ['Acuerdo - Zona: Grupos', 'Seleccione los Grupos'] do %>
+<%= card ['Acuerdo - Zona: Grupos', "Grupos asignados: #{@agreement_zone.groups.count}, Haga click para agregar y eliminar"] do %>
   <%= render partial: 'group_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
 <% end %>

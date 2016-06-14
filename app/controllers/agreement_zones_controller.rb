@@ -12,7 +12,7 @@ class AgreementZonesController < ApplicationController
   # Add Zone to agreements
   def add_remove_zone
     if @agreement_zone
-      @agreement_zone.delete
+      @agreement_zone.destroy
       redirect_to edit_agreement_path(params[:id]) , status: :see_other, notice: 'Se ha eliminado con exito la Zona del Acuerdo.'
     else
       AgreementZone.create({agreement_id: params[:id], zone_id: params[:zone_id]})
