@@ -1,0 +1,14 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Editar', edit_agreement_zones_path(@agreement_zone.agreement, @agreement_zone.zone), 'edit' %>
+<% toolbar.add_button 'Lista', agreement_path(@agreement_zone.agreement), 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Acuerdo: Zona', 'Detalles de zona'], toolbar do %>
+  <%= card_text_field_readonly @agreement_zone.agreement.company&.name, label: 'Empresa' %>
+  <%= card_text_field_readonly @agreement_zone.zone&.name, label: 'Zona' %>
+<% end %>
+
+<%= card ['Acuerdo - Zona: Grupos', 'Seleccione los Grupos'] do %>
+  <%= render partial: 'group_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
+<% end %>

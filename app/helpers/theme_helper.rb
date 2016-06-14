@@ -157,17 +157,19 @@ module ThemeHelper
     end
   end
 
-  def tree(array, title_key, value_key, node_key, parent_node_key, link_template = "")
-    content_tag :ul, nil do
+  def tree(name, array, title_key, value_key, node_key, parent_node_key, link_template = "", check_id_array = nil, include_color = 'green', exclude_color = 'red')
+    content_tag(:ul, nil, {id: name}) do
       array.each do |node|
-        concat tree_node(node, title_key, value_key, node_key, link_template) unless node[parent_node_key]
+        concat tree_node(node, title_key, value_key, node_key, link_template, check_id_array, include_color, exclude_color) unless node[parent_node_key]
       end
     end
   end
 
-  def tree_node(node, title_key, value_key, node_key, link_template)
+  def tree_node(node, title_key, value_key, node_key, link_template, check_id_array, include_color, exclude_color)
+    color = node_color(node, value_key, check_id_array, include_color, exclude_color)
+
     link = link_template.gsub(":#{value_key.to_s}", node[value_key].to_s)
-    link =  content_tag(:a, nil, href: link) do
+    link =  content_tag(:a, nil, href: link, style: "color:#{color}") do
       concat node[title_key]
     end
 
@@ -176,7 +178,7 @@ module ThemeHelper
     if subnodes
       content = content_tag(:ul, nil) do
         subnodes.each do |sub_node|
-          concat tree_node(sub_node, title_key, value_key, node_key, link_template)
+          concat tree_node(sub_node, title_key, value_key, node_key, link_template, check_id_array, include_color, exclude_color)
         end
       end
     end
@@ -185,4 +187,15 @@ module ThemeHelper
       concat content if subnodes
     end
   end
+
+  def node_color(node, value_key, check_id_array, include_color, exclude_color)
+    return 'blue' unless check_id_array
+    if check_id_array.include?(node[value_key])
+      include_color
+    else
+      exclude_color
+    end
+
+  end
+
 end

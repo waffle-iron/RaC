@@ -17,6 +17,7 @@ class AgreementsController < ApplicationController
 
   # GET /agreements/1/edit
   def edit
+    @zones = @agreement.zones.includes(:zones)
   end
 
   # POST /agreements

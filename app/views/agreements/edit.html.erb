@@ -11,3 +11,5 @@
 <%= render 'form' %>
 
 <% end %>
+
+<%= render partial: 'zones', locals: {agreement: @agreement, zones: @zones, link: add_remove_agreement_zones_path(@agreement, ":id")} %>

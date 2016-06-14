@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
-  resources :agreements
+  resources :agreements do
+    member do
+
+      resources :agreement_zones, as: :agreement_zones,  only: [] do
+        collection do
+          get '/add_remove_zone/:zone_id', to: :add_remove_zone, as: :add_remove
+          get 'show/:zone_id', to: :show, as: :show
+          get 'edit/:zone_id', to: :edit, as: :edit
+          get '/add_remove_zone_group/:zone_id/group/:group_letter', to: 'agreement_zone_groups#add_remove_group', as: :add_remove_group
+        end
+      end
+    end
+  end
   resources :insurances
   resources :zones
   resources :extras

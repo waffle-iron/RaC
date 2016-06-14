@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609204204) do
+ActiveRecord::Schema.define(version: 20160614081409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agreement_zone_groups", force: :cascade do |t|
+    t.integer  "agreement_zone_id"
+    t.string   "group"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "agreement_zone_groups", ["agreement_zone_id"], name: "index_agreement_zone_groups_on_agreement_zone_id", using: :btree
+
+  create_table "agreement_zones", force: :cascade do |t|
+    t.integer  "agreement_id"
+    t.integer  "zone_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "agreement_zones", ["agreement_id"], name: "index_agreement_zones_on_agreement_id", using: :btree
+  add_index "agreement_zones", ["zone_id"], name: "index_agreement_zones_on_zone_id", using: :btree
+
+  create_table "agreements", force: :cascade do |t|
+    t.integer  "company_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "agreements", ["company_id"], name: "index_agreements_on_company_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -97,5 +126,9 @@ ActiveRecord::Schema.define(version: 20160609204204) do
 
   add_index "zones", ["parent_zone_id"], name: "index_zones_on_parent_zone_id", using: :btree
 
+  add_foreign_key "agreement_zone_groups", "agreement_zones"
+  add_foreign_key "agreement_zones", "agreements"
+  add_foreign_key "agreement_zones", "zones"
+  add_foreign_key "agreements", "companies"
   add_foreign_key "companies", "company_types"
 end

@@ -3,16 +3,5 @@
 
 
 <%= card title, toolbar do %>
-  <%= tree all_zones, :name, :id, :zones, :parent_zone_id, zone_path(":id") %>
-  <%# tree_node all_zones.last, :name, :id, :zones %>
+  <%= tree :tree2, all_zones, :name, :id, :zones, :parent_zone_id, zone_path(":id")%>
 <% end %>
-
-
-<script type="text/javascript">
- function getTree() {
-   // Some logic to retrieve, or generate tree structure
-   return data;
- }
-
- $('#tree').treeview({data: getTree()});
-</script>
