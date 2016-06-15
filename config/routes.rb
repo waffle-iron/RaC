@@ -8,6 +8,7 @@ Rails.application.routes.draw do
           get 'show/:zone_id', to: :show, as: :show
           get 'edit/:zone_id', to: :edit, as: :edit
           get '/add_remove_zone_group/:zone_id/group/:group_letter', to: 'agreement_zone_groups#add_remove_group', as: :add_remove_group
+          get '/add_remove_zone_group/:zone_id/group_section/:section', to: 'agreement_zone_group_sections#add_remove', as: :add_remove_group_section
         end
       end
     end

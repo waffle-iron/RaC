@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614081409) do
+ActiveRecord::Schema.define(version: 20160615101412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agreement_zone_group_sections", force: :cascade do |t|
+    t.integer  "agreement_zone_id"
+    t.integer  "section"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "agreement_zone_group_sections", ["agreement_zone_id"], name: "index_agreement_zone_group_sections_on_agreement_zone_id", using: :btree
 
   create_table "agreement_zone_groups", force: :cascade do |t|
     t.integer  "agreement_zone_id"
@@ -126,6 +135,7 @@ ActiveRecord::Schema.define(version: 20160614081409) do
 
   add_index "zones", ["parent_zone_id"], name: "index_zones_on_parent_zone_id", using: :btree
 
+  add_foreign_key "agreement_zone_group_sections", "agreement_zones"
   add_foreign_key "agreement_zone_groups", "agreement_zones"
   add_foreign_key "agreement_zones", "agreements"
   add_foreign_key "agreement_zones", "zones"

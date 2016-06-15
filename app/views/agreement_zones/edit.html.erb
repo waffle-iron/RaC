@@ -12,3 +12,7 @@
 <%= card ['Acuerdo - Zona: Grupos', "Grupos asignados: #{@agreement_zone.groups.count}, Haga click para agregar y eliminar"] do %>
   <%= render partial: 'group_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
 <% end %>
+
+<%= card ['Acuerdo - Zona: Tramos', "Tramos asignados: #{@agreement_zone.group_sections.count}, Haga click para agregar y eliminar"] do %>
+  <%= render partial: 'group_section_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
+<% end %>

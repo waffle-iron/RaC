@@ -13,5 +13,6 @@ class AgreementZone < ActiveRecord::Base
   belongs_to :agreement
   belongs_to :zone
   has_many :groups, class_name: "AgreementZoneGroup", dependent: :destroy
+  has_many :group_sections, class_name: "AgreementZoneGroupSection", dependent: :destroy
   # has_many :agreement_zone_groups, as: :groups
 end
