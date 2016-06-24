@@ -1,0 +1,12 @@
+<% zone_taxes = agreement_zone.taxes.pluck(:tax_id) %>
+<ul class="hi-menu-h">
+  <% Tax.order(:name).each do |tax| %>
+  <% color = zone_taxes.include?(tax.id) ? 'green' : 'red' %>
+  <% link = mode == :show ? '' :  add_remove_tax_agreement_zones_path(agreement_zone.agreement_id, agreement_zone.zone_id, tax.id ) %>
+  <% unless color == 'red' and mode == :show %>
+  <li>
+    <h2><a href="<%=  link %>" style="<%= "color:#{color};" %>"<i><%= tax.name %></i></a></h2>
+  </li>
+  <% end %>
+  <% end %>
+</ul>

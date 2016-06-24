@@ -16,3 +16,15 @@
 <%= card ['Acuerdo - Zona: Tramos', "Tramos asignados: #{@agreement_zone.group_sections.count}"] do %>
   <%= render partial: 'group_section_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
 <% end %>
+
+<%= card ['Acuerdo - Zona: Impuestos', "Impuestos asignados: #{@agreement_zone.taxes.count}"] do %>
+  <%= render partial: 'tax_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
+<% end %>
+
+<%= card ['Acuerdo - Zona: Seguros', "Seguros asignados: #{@agreement_zone.insurances.count}"] do %>
+  <%= render partial: 'insurance_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
+<% end %>
+
+<%= card ['Acuerdo - Zona: Extras', "Extras asignados: #{@agreement_zone.extras.count}"] do %>
+  <%= render partial: 'extra_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
+<% end %>

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
           get 'edit/:zone_id', to: :edit, as: :edit
           get '/add_remove_zone_group/:zone_id/group/:group_letter', to: 'agreement_zone_groups#add_remove_group', as: :add_remove_group
           get '/add_remove_zone_group/:zone_id/group_section/:section', to: 'agreement_zone_group_sections#add_remove', as: :add_remove_group_section
+          get '/add_remove_tax/:zone_id/tax/:tax_id', to: 'agreement_zone_taxes#add_remove', as: :add_remove_tax
+          get '/add_remove_insurance/:zone_id/insurance/:insurance_id', to: 'agreement_zone_insurances#add_remove', as: :add_remove_insurance
+          get '/add_remove_extra/:zone_id/extra/:extra_id', to: 'agreement_zone_extras#add_remove', as: :add_remove_extra
         end
       end
     end
