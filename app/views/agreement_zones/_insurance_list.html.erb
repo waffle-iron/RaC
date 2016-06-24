@@ -5,7 +5,7 @@
   <% link = mode == :show ? '' :  add_remove_insurance_agreement_zones_path(agreement_zone.agreement_id, agreement_zone.zone_id, insurance.id ) %>
   <% unless color == 'red' and mode == :show %>
   <li>
-    <h2><a href="<%=  link %>" style="<%= "color:#{color};" %>"<i><%= insurance.name %></i></a></h2>
+    <h2><a href="<%=  link %>" style="<%= "color:#{color};" %>"<i>[<%= insurance.name %>]</i></a></h2>
   </li>
   <% end %>
   <% end %>
