@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :sale_types
   resources :agreements do
     member do
-      get '/add_remove_extra/extra/:extra_id', to: 'agreement_extras#add_remove', as: :add_remove_extra
+      get '/add_remove_extra/:extra_id', to: 'agreement_extras#add_remove', as: :add_remove_extra
+      get '/add_remove_group_section/:section', to: 'agreement_group_sections#add_remove', as: :add_remove_group_section
 
       resources :agreement_zones, as: :agreement_zones,  only: [] do
         collection do

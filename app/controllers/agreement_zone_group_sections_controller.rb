@@ -25,6 +25,6 @@ class AgreementZoneGroupSectionsController < ApplicationController
     end
 
     def redirect_if_agreement_zone_not_exist
-      redirect_to agreement_path(params[:id]) , status: :see_other, notice: 'La Zona seleccionada no se ha agregado al Acuerdo. Edite el Acuerdo y agregue la zona' unless @agreement_zone
+      redirect_to agreements_path(params[:id]) , status: :see_other, notice: 'La Zona seleccionada no se ha agregado al Acuerdo. Edite el Acuerdo y agregue la zona' unless @agreement_zone
     end
 end

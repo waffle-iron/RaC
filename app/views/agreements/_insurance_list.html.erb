@@ -1,0 +1,12 @@
+<% zone_insurances = agreement_zone.insurances.pluck(:insurance_id) %>
+<ul class="hi-menu-h">
+  <% Insurance.order(:name).each do |insurance| %>
+  <% color = zone_insurances.include?(insurance.id) ? 'green' : 'red' %>
+  <% link = mode == :show ? '' :  add_remove_insurance_agreement_zones_path(agreement_zone.agreement_id, agreement_zone.zone_id, insurance.id ) %>
+  <% unless color == 'red' and mode == :show %>
+  <li>
+    <h2><a href="<%=  link %>" style="<%= "color:#{color};" %>"<i>[<%= insurance.name %>]</i></a></h2>
+  </li>
+  <% end %>
+  <% end %>
+</ul>

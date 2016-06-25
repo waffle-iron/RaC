@@ -11,13 +11,13 @@ class AgreementExtrasController < ApplicationController
       redirect_to edit_agreement_path(@agreement.id, anchor: :extras) , status: :see_other, notice: 'Se ha eliminado con exito el Extra del Acuerdo.'
     else
       AgreementZoneExtra.create({agreement_id: @agreement.id, extra_id: params[:extra_id]})
-        redirect_to edit_agreements_path(@agreement.id, anchor: :extras) , status: :see_other, notice: 'Se ha agregado con exito el Extra al Acuerdo.'
+        redirect_to edit_agreement_path(@agreement.id, anchor: :extras) , status: :see_other, notice: 'Se ha agregado con exito el Extra al Acuerdo.'
     end
   end
 
   private
     def set_agreement
-      @agreement = Agreement.where(agreement_id: params[:id]).first
+      @agreement = Agreement.where(id: params[:id]).first
     end
 
     def set_agreement_extra
