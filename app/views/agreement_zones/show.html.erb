@@ -7,24 +7,20 @@
 <%= card ['Acuerdo: Zona', 'Detalles de zona'], toolbar do %>
   <%= card_text_field_readonly @agreement_zone.agreement.company&.name, label: 'Empresa' %>
   <%= card_text_field_readonly @agreement_zone.zone&.name, label: 'Zona' %>
-<% end %>
 
-<%= card ['Acuerdo - Zona: Grupos', "Grupos asignados: #{@agreement_zone.groups.count}"] do %>
+  <p class="c-black f-500 m-b-5">Grupos:</p>
   <%= render partial: 'group_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
-<% end %>
 
-<%= card ['Acuerdo - Zona: Tramos', "Tramos asignados: #{@agreement_zone.group_sections.count}"] do %>
+  <p class="c-black f-500 m-b-5">Tramos:</p>
   <%= render partial: 'group_section_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
-<% end %>
 
-<%= card ['Acuerdo - Zona: Impuestos', "Impuestos asignados: #{@agreement_zone.taxes.count}"] do %>
+  <p class="c-black f-500 m-b-5">Impuestos:</p>
   <%= render partial: 'tax_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
-<% end %>
 
-<%= card ['Acuerdo - Zona: Seguros', "Seguros asignados: #{@agreement_zone.insurances.count}"] do %>
+  <p class="c-black f-500 m-b-5">Seguros:</p>
   <%= render partial: 'insurance_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
-<% end %>
 
-<%= card ['Acuerdo - Zona: Extras', "Extras asignados: #{@agreement_zone.extras.count}"] do %>
+  <p class="c-black f-500 m-b-5">Estras:</p>
   <%= render partial: 'extra_list', locals: {agreement_zone: @agreement_zone, mode: :show} %>
+
 <% end %>

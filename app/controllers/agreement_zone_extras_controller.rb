@@ -8,10 +8,10 @@ class AgreementZoneExtrasController < ApplicationController
   def add_remove
     if @agreement_zone_extra
       @agreement_zone_extra.destroy
-      redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id) , status: :see_other, notice: 'Se ha eliminado con exito el Extra de la Zona del Acuerdo.'
+      redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id, anchor: :extras) , status: :see_other, notice: 'Se ha eliminado con exito el Extra de la Zona del Acuerdo.'
     else
       AgreementZoneExtra.create({agreement_zone_id: @agreement_zone.id, extra_id: params[:extra_id]})
-        redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id) , status: :see_other, notice: 'Se ha agregado con exito el Extra a la Zona del Acuerdo.'
+        redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id, anchor: :extras) , status: :see_other, notice: 'Se ha agregado con exito el Extra a la Zona del Acuerdo.'
     end
   end
 

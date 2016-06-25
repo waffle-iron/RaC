@@ -10,5 +10,6 @@
 #
 
 class AgreementZoneGroup < ActiveRecord::Base
+  belongs_to :agreement
   belongs_to :agreement_zone
 end

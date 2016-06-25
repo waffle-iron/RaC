@@ -8,10 +8,10 @@ class AgreementZoneInsurancesController < ApplicationController
   def add_remove
     if @agreement_zone_insurance
       @agreement_zone_insurance.destroy
-      redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id) , status: :see_other, notice: 'Se ha eliminado con exito el Seguro de la Zona del Acuerdo.'
+      redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id, anchor: :insurances) , status: :see_other, notice: 'Se ha eliminado con exito el Seguro de la Zona del Acuerdo.'
     else
       AgreementZoneInsurance.create({agreement_zone_id: @agreement_zone.id, insurance_id: params[:insurance_id]})
-        redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id) , status: :see_other, notice: 'Se ha agregado con exito el Seguro a la Zona del Acuerdo.'
+        redirect_to edit_agreement_zones_path(@agreement_zone.agreement_id, @agreement_zone.zone_id, anchor: :insurances) , status: :see_other, notice: 'Se ha agregado con exito el Seguro a la Zona del Acuerdo.'
     end
   end
 

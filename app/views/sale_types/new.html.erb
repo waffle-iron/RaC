@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_sale_type_path, 'plus' %>
+<% toolbar.add_button 'Lista', sale_types_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Tipos de Venta', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

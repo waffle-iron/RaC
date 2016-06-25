@@ -1,0 +1,15 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_sale_type_path, 'plus' %>
+<% toolbar.add_button 'Ver', sale_type_path(@sale_type), 'eye' %>
+<% toolbar.add_button 'Editar', edit_sale_type_path(@sale_type), 'edit' %>
+<% toolbar.add_button 'Lista', sale_types_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', sale_type_path(@sale_type), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Tipos de Venta', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @sale_type.name, label: 'Nombre' %>
+
+
+<% end %>

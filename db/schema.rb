@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623214926) do
+ActiveRecord::Schema.define(version: 20160625183033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20160623214926) do
     t.boolean  "bill_client"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "agreement_id"
   end
 
+  add_index "agreement_zone_extras", ["agreement_id"], name: "index_agreement_zone_extras_on_agreement_id", using: :btree
   add_index "agreement_zone_extras", ["agreement_zone_id"], name: "index_agreement_zone_extras_on_agreement_zone_id", using: :btree
   add_index "agreement_zone_extras", ["extra_id"], name: "index_agreement_zone_extras_on_extra_id", using: :btree
 
@@ -33,8 +35,10 @@ ActiveRecord::Schema.define(version: 20160623214926) do
     t.integer  "section"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "agreement_id"
   end
 
+  add_index "agreement_zone_group_sections", ["agreement_id"], name: "index_agreement_zone_group_sections_on_agreement_id", using: :btree
   add_index "agreement_zone_group_sections", ["agreement_zone_id"], name: "index_agreement_zone_group_sections_on_agreement_zone_id", using: :btree
 
   create_table "agreement_zone_groups", force: :cascade do |t|
@@ -42,8 +46,10 @@ ActiveRecord::Schema.define(version: 20160623214926) do
     t.string   "group"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "agreement_id"
   end
 
+  add_index "agreement_zone_groups", ["agreement_id"], name: "index_agreement_zone_groups_on_agreement_id", using: :btree
   add_index "agreement_zone_groups", ["agreement_zone_id"], name: "index_agreement_zone_groups_on_agreement_zone_id", using: :btree
 
   create_table "agreement_zone_insurances", force: :cascade do |t|
@@ -55,8 +61,10 @@ ActiveRecord::Schema.define(version: 20160623214926) do
     t.boolean  "confidential"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "agreement_id"
   end
 
+  add_index "agreement_zone_insurances", ["agreement_id"], name: "index_agreement_zone_insurances_on_agreement_id", using: :btree
   add_index "agreement_zone_insurances", ["agreement_zone_id"], name: "index_agreement_zone_insurances_on_agreement_zone_id", using: :btree
   add_index "agreement_zone_insurances", ["insurance_id"], name: "index_agreement_zone_insurances_on_insurance_id", using: :btree
 
@@ -69,8 +77,10 @@ ActiveRecord::Schema.define(version: 20160623214926) do
     t.boolean  "confidential"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "agreement_id"
   end
 
+  add_index "agreement_zone_taxes", ["agreement_id"], name: "index_agreement_zone_taxes_on_agreement_id", using: :btree
   add_index "agreement_zone_taxes", ["agreement_zone_id"], name: "index_agreement_zone_taxes_on_agreement_zone_id", using: :btree
   add_index "agreement_zone_taxes", ["tax_id"], name: "index_agreement_zone_taxes_on_tax_id", using: :btree
 
@@ -129,6 +139,12 @@ ActiveRecord::Schema.define(version: 20160623214926) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sale_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "taxes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -176,12 +192,17 @@ ActiveRecord::Schema.define(version: 20160623214926) do
   add_index "zones", ["parent_zone_id"], name: "index_zones_on_parent_zone_id", using: :btree
 
   add_foreign_key "agreement_zone_extras", "agreement_zones"
+  add_foreign_key "agreement_zone_extras", "agreements"
   add_foreign_key "agreement_zone_extras", "extras"
   add_foreign_key "agreement_zone_group_sections", "agreement_zones"
+  add_foreign_key "agreement_zone_group_sections", "agreements"
   add_foreign_key "agreement_zone_groups", "agreement_zones"
+  add_foreign_key "agreement_zone_groups", "agreements"
   add_foreign_key "agreement_zone_insurances", "agreement_zones"
+  add_foreign_key "agreement_zone_insurances", "agreements"
   add_foreign_key "agreement_zone_insurances", "insurances"
   add_foreign_key "agreement_zone_taxes", "agreement_zones"
+  add_foreign_key "agreement_zone_taxes", "agreements"
   add_foreign_key "agreement_zone_taxes", "taxes"
   add_foreign_key "agreement_zones", "agreements"
   add_foreign_key "agreement_zones", "zones"
