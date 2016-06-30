@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-class AgreementExtrasController < ApplicationController
-  before_action :set_agreement, only: [:add_remove]
-  before_action :redirect_if_agreement_not_exist, only: [:add_remove]
+class AgreementExtrasController < AgreementBaseController
   before_action :set_agreement_extra, only: [:add_remove]
 
-  # Add Group to Agreement Zone
+  # Add Group to Agreement
   def add_remove
     if @agreement_extra
       @agreement_extra.destroy
@@ -16,15 +14,7 @@ class AgreementExtrasController < ApplicationController
   end
 
   private
-    def set_agreement
-      @agreement = Agreement.where(id: params[:id]).first
-    end
-
     def set_agreement_extra
       @agreement_extra = AgreementZoneExtra.where(agreement_id: @agreement.id).where(extra_id: params[:extra_id]).first
-    end
-
-    def redirect_if_agreement_not_exist
-      redirect_to agreement_path(params[:id]) , status: :see_other, notice: 'Acuerdo no existe' unless @agreement
     end
 end

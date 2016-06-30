@@ -1,0 +1,22 @@
+<%= form_for(@rate, builder: ThemeBuilder, url: build_route) do |f| %>
+  <% if @rate.errors.any? %>
+    <hr/>
+    <div class="has-error">
+      <ul>
+      <% @rate.errors.full_messages.each do |message| %>
+        <li><i class="input-helper"><%= message %></i></li>
+      <% end %>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+
+
+    <%= f.hidden_field :agreement_id %>
+    <%= f.hidden_field :agreement_zone_id %>
+    <%= f.text_field :code, label: 'Code'%>
+    <%= f.date_select :from, label: 'From'%>
+    <%= f.date_select :to, label: 'To'%>
+    <%= f.text_field :commission_base, label: 'Commission base'%>
+    <%= f.submit 'Enviar'%>
+<% end %>

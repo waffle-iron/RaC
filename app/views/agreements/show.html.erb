@@ -4,9 +4,28 @@
 <% toolbar.add_button 'Editar', edit_agreement_path(@agreement), 'edit' %>
 <% toolbar.add_button 'Lista', agreements_path, 'view-list-alt' %>
 <% toolbar.add_button 'Eliminar', agreement_path(@agreement), 'delete' %>
+<% toolbar.add_button 'Tarifas', agreement_rates_path(@agreement.id), 'money-box' %>
 
 <%= render '/layouts/block_header' %>
 
 <%= render partial: 'details', locals: {toolbar: toolbar} %>
 
-<%= render partial: 'zones', locals: {agreement: @agreement, zones: @agreement.zones, link: show_agreement_zones_path(@agreement, ":id")} %>
+<%= card ['Agregables', ''] do %>
+
+  <p class="c-black f-500 m-b-5" >Grupos:</p>
+  <%= render partial: 'group_list', locals: {agreement: @agreement, mode: :show} %>
+
+  <p class="c-black f-500 m-b-5 " >Tramos:</p>
+  <%= render partial: 'group_section_list', locals: {agreement: @agreement, mode: :show} %>
+
+  <p class="c-black f-500 m-b-5" >Impuestos:</p>
+  <%= render partial: 'tax_list', locals: {agreement: @agreement, mode: :show} %>
+
+  <p class="c-black f-500 m-b-5" >Seguros:</p>
+  <%= render partial: 'insurance_list', locals: {agreement: @agreement, mode: :show} %>
+
+  <p class="c-black f-500 m-b-5 " >Extras:</p>
+  <%= render partial: 'extra_list', locals: {agreement: @agreement, mode: :show} %>
+<% end %>
+
+<%= render partial: 'zones', locals: {agreement: @agreement, zones: @agreement.zones, link: agreement_zone_path(@agreement, ":id")} %>

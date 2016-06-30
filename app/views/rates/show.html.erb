@@ -1,0 +1,15 @@
+<%= render '/layouts/block_header' %>
+
+<%= card ['Rates', 'Detalles'], @toolbar do %>
+
+  <%= card_text_field_readonly @rate.code, label: 'Code' %>
+  <%= card_text_field_readonly @rate.from, label: 'From' %>
+  <%= card_text_field_readonly @rate.to, label: 'To' %>
+  <%= card_text_field_readonly @rate.is_active, label: 'Is active' %>
+  <%= card_text_field_readonly @rate.is_offer, label: 'Is offer' %>
+  <%= card_text_field_readonly @rate.commission_base, label: 'Commission base' %>
+  <%= card_text_field_readonly @rate.agreement_zone_id, label: 'Agreement zone' %>
+  <%= card_text_field_readonly @rate.agreement_id, label: 'Agreement' %>
+
+
+<% end %>

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-class AgreementGroupSectionsController < ApplicationController
-  before_action :set_agreement, only: [:add_remove]
-  before_action :redirect_if_agreement_not_exist, only: [:add_remove]
+class AgreementGroupSectionsController < AgreementBaseController
   before_action :set_agreement_group_section, only: [:add_remove]
 
   def add_remove
@@ -15,15 +13,7 @@ class AgreementGroupSectionsController < ApplicationController
   end
 
   private
-    def set_agreement
-      @agreement = Agreement.where(id: params[:id]).first
-    end
-
     def set_agreement_group_section
       @agreement_group_section = AgreementZoneGroupSection.where(agreement_id: @agreement.id).where(section: params[:section]).first
-    end
-
-    def redirect_if_agreement_not_exist
-      redirect_to agreements_path(params[:id]) , status: :see_other, notice: 'Acuerdo no existe' unless @agreement
     end
 end

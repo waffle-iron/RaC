@@ -1,8 +1,9 @@
-<% groups = agreement_zone.groups.pluck(:group) %>
+<p id="groups" class="anchor"></p>
+<% groups = agreement.groups.pluck(:group) %>
 <ul class="hi-menu-h">
   <% ('A'..'Z').each do |letter| %>
   <% color = groups.include?(letter) ? 'green' : 'red' %>
-  <% link = mode == :show ? '' :  add_remove_group_agreement_zones_path(agreement_zone.agreement_id, agreement_zone.zone_id, letter ) %>
+  <% link = mode == :show ? '' :  agreement_add_remove_group_path(agreement.id, letter ) %>
   <% unless color == 'red' and mode == :show %>
   <li>
     <h2><a href="<%=  link %>" style="<%= "color:#{color};" %>"<i><%= letter %></i></a></h2>

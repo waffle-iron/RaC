@@ -1,8 +1,9 @@
+<p id="extras" class="anchor"></p>
 <% zone_extras = agreement_zone.extras.pluck(:extra_id) %>
 <ul class="hi-menu-h">
   <% Extra.order(:name).each do |extra| %>
   <% color = zone_extras.include?(extra.id) ? 'green' : 'red' %>
-  <% link = mode == :show ? '' :  add_remove_extra_agreement_zones_path(agreement_zone.agreement_id, agreement_zone.zone_id, extra.id ) %>
+  <% link = mode == :show ? '' :  agreement_zone_add_remove_extra_path(agreement_zone.agreement_id, agreement_zone.zone_id, extra.id ) %>
   <% unless color == 'red' and mode == :show %>
   <li>
     <h2><a href="<%=  link %>" style="<%= "color:#{color};" %>"<i>[<%= extra.name %>]</i></a></h2>

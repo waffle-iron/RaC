@@ -1,5 +1,5 @@
 <% toolbar = Theme::Toolbar.new %>
-<% toolbar.add_button 'Ver', show_agreement_zones_path(@agreement_zone.agreement, @agreement_zone.zone), 'eye' %>
+<% toolbar.add_button 'Ver', agreement_zone_path(@agreement_zone.agreement, @agreement_zone.zone), 'eye' %>
 <% toolbar.add_button 'Lista', agreement_path(@agreement_zone.agreement), 'view-list-alt' %>
 
 <%= render '/layouts/block_header' %>
@@ -8,18 +8,18 @@
   <%= card_text_field_readonly @agreement_zone.agreement.company&.name, label: 'Empresa' %>
   <%= card_text_field_readonly @agreement_zone.zone&.name, label: 'Zona' %>
 
-  <p class="c-black f-500 m-b-5" id="groups">Grupos:</p>
+  <p class="c-black f-500 m-b-5" >Grupos:</p>
   <%= render partial: 'group_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
 
-  <p class="c-black f-500 m-b-5" id="group_sections">Tramos:</p>
+  <p class="c-black f-500 m-b-5" >Tramos:</p>
   <%= render partial: 'group_section_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
 
-  <p class="c-black f-500 m-b-5" id="taxes">Impuestos:</p>
+  <p class="c-black f-500 m-b-5" >Impuestos:</p>
   <%= render partial: 'tax_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
 
-  <p class="c-black f-500 m-b-5" id="insurances">Seguros:</p>
+  <p class="c-black f-500 m-b-5" >Seguros:</p>
   <%= render partial: 'insurance_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
 
-  <p class="c-black f-500 m-b-5" id="extras">Extras:</p>
+  <p class="c-black f-500 m-b-5" >Extras:</p>
   <%= render partial: 'extra_list', locals: {agreement_zone: @agreement_zone, mode: :edit} %>
 <% end %>

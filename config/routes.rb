@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
+  resources :rates
   resources :sale_types
   resources :agreements do
-    member do
-      get '/add_remove_extra/:extra_id', to: 'agreement_extras#add_remove', as: :add_remove_extra
-      get '/add_remove_group_section/:section', to: 'agreement_group_sections#add_remove', as: :add_remove_group_section
+    resources :rates
+    get '/add_remove_extra/:extra_id', to: 'agreement_extras#add_remove', as: :add_remove_extra
+    get '/add_remove_group_section/:section', to: 'agreement_group_sections#add_remove', as: :add_remove_group_section
+    get '/add_remove_group/:group_letter', to: 'agreement_groups#add_remove', as: :add_remove_group
+    get '/add_remove_tax/:tax_id', to: 'agreement_taxes#add_remove', as: :add_remove_tax
+    get '/add_remove_insurance/:insurance_id', to: 'agreement_insurances#add_remove', as: :add_remove_insurance
 
-      resources :agreement_zones, as: :agreement_zones,  only: [] do
-        collection do
-          get '/add_remove_zone/:zone_id', to: :add_remove_zone, as: :add_remove
-          get 'show/:zone_id', to: :show, as: :show
-          get 'edit/:zone_id', to: :edit, as: :edit
-          get '/add_remove_zone_group/:zone_id/group/:group_letter', to: 'agreement_zone_groups#add_remove_group', as: :add_remove_group
-          get '/add_remove_zone_group/:zone_id/group_section/:section', to: 'agreement_zone_group_sections#add_remove', as: :add_remove_group_section
-          get '/add_remove_tax/:zone_id/tax/:tax_id', to: 'agreement_zone_taxes#add_remove', as: :add_remove_tax
-          get '/add_remove_insurance/:zone_id/insurance/:insurance_id', to: 'agreement_zone_insurances#add_remove', as: :add_remove_insurance
-          get '/add_remove_extra/:zone_id/extra/:extra_id', to: 'agreement_zone_extras#add_remove', as: :add_remove_extra
-        end
-      end
+    resources :agreement_zones, as: :zones, only: [:show, :edit] do
+      resources :rates
+      get '/add_remove_zone', to: :add_remove, as: :add_remove
+      get '/add_remove_zone_group/:group_letter', to: 'agreement_zone_groups#add_remove_group', as: :add_remove_group
+      get '/add_remove_zone_group_section/:section', to: 'agreement_zone_group_sections#add_remove', as: :add_remove_group_section
+      get '/add_remove_tax/:tax_id', to: 'agreement_zone_taxes#add_remove', as: :add_remove_tax
+      get '/add_remove_insurance/:insurance_id', to: 'agreement_zone_insurances#add_remove', as: :add_remove_insurance
+      get '/add_remove_extra/:extra_id', to: 'agreement_zone_extras#add_remove', as: :add_remove_extra
     end
   end
   resources :insurances

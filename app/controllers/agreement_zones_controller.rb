@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-class AgreementZonesController < ApplicationController
-  before_action :set_agreement_zone, only: [:show, :edit, :add_remove_zone]
-  before_action :redirect_if_agreement_zone_not_exist, only: [:show, :edit]
+class AgreementZonesController < AgreementBaseController
+  before_action :set_zone
+  before_action :set_agreement_zone
+  before_action :redirect_if_zone_not_exist
 
   def show
   end
@@ -10,22 +11,26 @@ class AgreementZonesController < ApplicationController
   end
 
   # Add Zone to agreements
-  def add_remove_zone
+  def add_remove
     if @agreement_zone
       @agreement_zone.destroy
-      redirect_to edit_agreement_path(params[:id]) , status: :see_other, notice: 'Se ha eliminado con exito la Zona del Acuerdo.'
+      redirect_to edit_agreement_path(@agreement.id, anchor: "zones") , status: :see_other, notice: 'Se ha eliminado con exito la Zona del Acuerdo.'
     else
-      AgreementZone.create({agreement_id: params[:id], zone_id: params[:zone_id]})
-      redirect_to edit_agreement_path(params[:id]) , status: :see_other, notice: 'Se ha agregado con exito la Zona al Acuerdo.'
+      AgreementZone.create({agreement_id: @agreement.id, zone_id: @zone.id})
+      redirect_to edit_agreement_path(@agreement.id, anchor: "zones") , status: :see_other, notice: 'Se ha agregado con exito la Zona al Acuerdo.'
     end
   end
 
   private
-    def set_agreement_zone
-      @agreement_zone = AgreementZone.where(agreement_id: params[:id]).where(zone_id: params[:zone_id]).first
+    def set_zone
+      @zone = Zone.where(id: params[:zone_id] || params[:id]).first
     end
 
-    def redirect_if_agreement_zone_not_exist
-      redirect_to agreement_path(params[:id]) , status: :see_other, notice: 'La Zona seleccionada no se ha agregado al Acuerdo. Edite el Acuerdo y agregue la zona' unless @agreement_zone
+    def set_agreement_zone
+      @agreement_zone = AgreementZone.where(agreement_id: @agreement.id).where(zone_id: @zone.id).first
+    end
+
+    def redirect_if_zone_not_exist
+      redirect_to agreement_path(@agreement.id) , status: :see_other, notice: 'La Zona seleccionada no se ha agregado al Acuerdo. Edite el Acuerdo y agregue la zona' unless @zone
     end
 end

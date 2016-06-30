@@ -1,8 +1,10 @@
+<p id="group_sections" class="anchor"></p>
+<p class="anchor" id="group_sections"></p>
 <% sections = agreement.group_sections.pluck(:section) %>
 <ul class="hi-menu-h">
   <% (1..15).each do |section| %>
   <% color = sections.include?(section) ? 'green' : 'red' %>
-  <% link = mode == :show ? '' :  add_remove_group_section_agreement_path(agreement.id, section ) %>
+  <% link = mode == :show ? '' :  agreement_add_remove_group_section_path(agreement.id, section ) %>
   <% unless color == 'red' and mode == :show %>
   <li>
     <h2><a href="<%=  link %>" style="<%= "color:#{color};" %>"<i><%= section %></i></a></h2>

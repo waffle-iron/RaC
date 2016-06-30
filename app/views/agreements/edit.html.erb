@@ -14,12 +14,21 @@
 
 <%= card ['Agregables', ''] do %>
 
-  <p class="c-black f-500 m-b-5" id="group_sections">Tramos:</p>
+  <p class="c-black f-500 m-b-5" >Grupos:</p>
+  <%= render partial: 'group_list', locals: {agreement: @agreement, mode: :edit} %>
+
+  <p class="c-black f-500 m-b-5 " >Tramos:</p>
   <%= render partial: 'group_section_list', locals: {agreement: @agreement, mode: :edit} %>
 
-  <p class="c-black f-500 m-b-5" id="extras">Extras:</p>
+  <p class="c-black f-500 m-b-5" >Impuestos:</p>
+  <%= render partial: 'tax_list', locals: {agreement: @agreement, mode: :edit} %>
+
+  <p class="c-black f-500 m-b-5" >Seguros:</p>
+  <%= render partial: 'insurance_list', locals: {agreement: @agreement, mode: :edit} %>
+
+  <p class="c-black f-500 m-b-5 " >Extras:</p>
   <%= render partial: 'extra_list', locals: {agreement: @agreement, mode: :edit} %>
 <% end %>
 
 
-<%= render partial: 'zones', locals: {agreement: @agreement, zones: @zones, link: add_remove_agreement_zones_path(@agreement, ":id")} %>
+<%= render partial: 'zones', locals: {agreement: @agreement, zones: @zones, link: agreement_zone_add_remove_path(@agreement, ":id")} %>
