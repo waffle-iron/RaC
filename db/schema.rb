@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627213936) do
+ActiveRecord::Schema.define(version: 20160630194021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160627213936) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "agreement_id"
+    t.integer  "section_to"
   end
 
   add_index "agreement_zone_group_sections", ["agreement_id"], name: "index_agreement_zone_group_sections_on_agreement_id", using: :btree

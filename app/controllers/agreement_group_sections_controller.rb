@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class AgreementGroupSectionsController < AgreementBaseController
+  include AgreementZoneGroupSectionConcern
   before_action :set_agreement_group_section, only: [:add_remove]
 
   def add_remove
@@ -16,4 +17,5 @@ class AgreementGroupSectionsController < AgreementBaseController
     def set_agreement_group_section
       @agreement_group_section = AgreementZoneGroupSection.where(agreement_id: @agreement.id).where(section: params[:section]).first
     end
+
 end
