@@ -169,7 +169,7 @@ module ThemeHelper
     color = node_color(node, value_key, check_id_array, include_color, exclude_color)
 
     link = link_template.gsub(":#{value_key.to_s}", node[value_key].to_s)
-    link =  content_tag(:a, nil, href: link, style: "color:#{color}") do
+    link =  content_tag(:a, nil, href: (color == exclude_color ? nil : link), style: "color:#{color}") do
       concat node[title_key]
     end
 
