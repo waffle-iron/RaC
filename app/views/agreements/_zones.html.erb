@@ -3,6 +3,5 @@
 
 <p class="anchor" id="zones"></p>
 <%= card  ['Acuerdo: Zonas', "Zonas asignadas: #{zones.count}. Haga click para agregar y eliminar"] do %>
-  <%= tree :tree2, all_zones, :name, :id, :zones, :parent_zone_id, link, zones.pluck(:id) %>
-  <%# tree_node all_zones.last, :name, :id, :zones %>
+  <%= tree :tree2, all_zones, :name, :id, :zones, :parent_zone_id, link, zones.pluck(:id), mode %>
 <% end %>

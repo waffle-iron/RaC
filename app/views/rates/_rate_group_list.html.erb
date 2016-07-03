@@ -1,0 +1,21 @@
+  <table id="data-table-command" class="table table-striped table-vmiddle">
+    <thead>
+      <tr>
+        <th>Grupo</th>
+        <th>Desde</th>
+        <th>A</th>
+        <th>Costo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rate.groups.includes(:agreement_zone_group).order("agreement_zone_groups.group ASC").each do |group| %>
+          <tr>
+            <td><%= group.agreement_zone_group.group %></td>
+            <td><%= group.agreement_zone_group_section.section %></td>
+            <td><%= group.agreement_zone_group_section.section_to %></td>
+            <td><%= group.cost %></td>
+          </tr>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>

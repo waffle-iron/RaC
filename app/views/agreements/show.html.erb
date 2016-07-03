@@ -28,4 +28,4 @@
   <%= render partial: 'extra_list', locals: {agreement: @agreement, mode: :show} %>
 <% end %>
 
-<%= render partial: 'zones', locals: {agreement: @agreement, zones: @agreement.zones, link: agreement_zone_path(@agreement, ":id")} %>
+<%= render partial: 'zones', locals: {agreement: @agreement, zones: @agreement.zones, link: agreement_zone_path(@agreement, ":id"), mode: :show} %>

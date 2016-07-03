@@ -13,4 +13,6 @@
 class AgreementZoneGroup < ActiveRecord::Base
   belongs_to :agreement
   belongs_to :agreement_zone
+  has_many :rate_groups, dependent: :destroy
+  has_many :rate_group_insurances, dependent: :destroy
 end

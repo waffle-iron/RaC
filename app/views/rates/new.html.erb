@@ -2,6 +2,6 @@
 
 <%= card ['Rates', 'Nuevo'], @toolbar do %>
 
-<%= render 'form' %>
+  <%= render partial: 'form', locals: {owner: @rate_owner} %>
 
 <% end %>

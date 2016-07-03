@@ -12,11 +12,19 @@
   <% end %>
 
 
-    <%= f.hidden_field :agreement_id %>
-    <%= f.hidden_field :agreement_zone_id %>
-    <%= f.text_field :code, label: 'Code'%>
-    <%= f.date_select :from, label: 'From'%>
-    <%= f.date_select :to, label: 'To'%>
-    <%= f.text_field :commission_base, label: 'Commission base'%>
-    <%= f.submit 'Enviar'%>
+  <%= f.hidden_field :agreement_id %>
+  <%= f.hidden_field :agreement_zone_id %>
+  <%= f.text_field :code, label: 'Code'%>
+  <%= f.date_select :from, label: 'From'%>
+  <%= f.date_select :to, label: 'To'%>
+  <%= f.text_field :commission_base, label: 'Commission base'%>
+
+
+  <p class="c-black f-500 m-b-5 " >Grupos:</p>
+  <%= render partial: 'rate_group_form', locals: {f: f} %>
+
+  <p class="c-black f-500 m-b-5 " >Grupos:</p>
+  <%= render partial: 'rate_insurance_form', locals: {f: f, owner: owner} %>
+
+  <%= f.submit 'Enviar'%>
 <% end %>

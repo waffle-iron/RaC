@@ -157,19 +157,19 @@ module ThemeHelper
     end
   end
 
-  def tree(name, array, title_key, value_key, node_key, parent_node_key, link_template = "", check_id_array = nil, include_color = 'green', exclude_color = 'red')
+  def tree(name, array, title_key, value_key, node_key, parent_node_key, link_template = "", check_id_array = nil, mode = :show, include_color = 'green', exclude_color = 'red')
     content_tag(:ul, nil, {id: name}) do
       array.each do |node|
-        concat tree_node(node, title_key, value_key, node_key, link_template, check_id_array, include_color, exclude_color) unless node[parent_node_key]
+        concat tree_node(node, title_key, value_key, node_key, link_template, check_id_array, mode, include_color, exclude_color) unless node[parent_node_key]
       end
     end
   end
 
-  def tree_node(node, title_key, value_key, node_key, link_template, check_id_array, include_color, exclude_color)
+  def tree_node(node, title_key, value_key, node_key, link_template, check_id_array, mode, include_color, exclude_color)
     color = node_color(node, value_key, check_id_array, include_color, exclude_color)
 
-    link = link_template.gsub(":#{value_key.to_s}", node[value_key].to_s)
-    link =  content_tag(:a, nil, href: (color == exclude_color ? nil : link), style: "color:#{color}") do
+    link = (mode == :show && color == 'red') ? nil : link_template.gsub(":#{value_key.to_s}", node[value_key].to_s)
+    link =  content_tag(:a, nil, href: link, style: "color:#{color}") do
       concat node[title_key]
     end
 
@@ -178,7 +178,7 @@ module ThemeHelper
     if subnodes
       content = content_tag(:ul, nil) do
         subnodes.each do |sub_node|
-          concat tree_node(sub_node, title_key, value_key, node_key, link_template, check_id_array, include_color, exclude_color)
+          concat tree_node(sub_node, title_key, value_key, node_key, link_template, check_id_array, mode, include_color, exclude_color)
         end
       end
     end

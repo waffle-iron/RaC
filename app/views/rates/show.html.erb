@@ -13,3 +13,11 @@
 
 
 <% end %>
+
+<%= card ['Grupos', 'con tramos'], @toolbar do %>
+  <%= render partial: 'rate_group_list', locals: {rate: @rate} %>
+<% end %>
+
+<%= card ['Seguros', 'con Grupos'], @toolbar do %>
+  <%= render partial: 'rate_insurance_list', locals: {rate: @rate, owner: @rate_owner } %>
+<% end %>

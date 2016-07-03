@@ -3,6 +3,7 @@ class RatesController < ApplicationController
   before_action :set_agreement
   before_action :set_agreement_zone
   before_action :build_toolbar, except: [:create, :update]
+  before_action :set_rate_owner
 
   # GET /rates
   def index
@@ -15,7 +16,7 @@ class RatesController < ApplicationController
 
   # GET /rates/new
   def new
-    @rate = Rate.new({agreement: @agreement, agreement_zone: @agreement_zone})
+    new_rate
   end
 
   # GET /rates/1/edit
@@ -27,7 +28,8 @@ class RatesController < ApplicationController
     @rate = Rate.new(rate_params)
     build_toolbar("new")
     if @rate.save
-      @rate = Rate.new({agreement: @agreement, agreement_zone: @agreement_zone})
+      # save_groups
+      new_rate
       #redirect_to rates_url, notice: 'Rate was successfully created.'
       flash[:notice] = 'Rate was successfully created.'
       render :new
@@ -53,6 +55,12 @@ class RatesController < ApplicationController
   end
 
   private
+    def new_rate
+      @rate = Rate.new({agreement: @agreement, agreement_zone: @agreement_zone, commission_base: 0})
+      build_groups
+      build_insurances
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_rate
       @rate = Rate.find(params[:id])
@@ -60,7 +68,12 @@ class RatesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def rate_params
-      params.require(:rate).permit(:code, :from, :to, :is_active, :is_offer, :commission_base, :agreement_zone_id, :agreement_id)
+      group_attributes = [:id, :rate_id, :agreement_zone_group_id, :agreement_zone_group_section_id, :cost, :_destroy]
+      insurance_cost_attributes = [:id, :rate_group_insurance_id, :agreement_zone_insurance_id, :cost, :include_in_cost]
+
+      insurance_attributes = [:id, :agreement_zone_group_id, :rate_id, costs_attributes: insurance_cost_attributes]
+
+      params.require(:rate).permit(:code, :from, :to, :is_active, :is_offer, :commission_base, :agreement_zone_id, :agreement_id, groups_attributes: group_attributes, insurances_attributes: insurance_attributes)
     end
 
     def set_agreement
@@ -68,7 +81,11 @@ class RatesController < ApplicationController
     end
 
     def set_agreement_zone
-      @agreeement_zone = AgreementZone.where(id: params[:agreement_zone_id])
+      @agreeement_zone = AgreementZone.where(id: params[:agreement_zone_id]).first
+    end
+
+    def set_rate_owner
+      @rate_owner = @agreeement_zone || @agreement
     end
 
     def build_toolbar(current_action = nil)
@@ -105,4 +122,20 @@ class RatesController < ApplicationController
 
     helper_method :build_route
 
+    def build_groups
+      @rate_owner.groups.order(:group).each do |group|
+        @rate_owner.group_sections.each do |group_section|
+          @rate.groups.build(agreement_zone_group: group, agreement_zone_group_section: group_section, cost: 0)
+        end
+      end
+    end
+
+    def build_insurances
+      @rate_owner.groups.order(:group).each do |group|
+        rate_insurance_group = @rate.insurances.build(agreement_zone_group: group)
+        @rate_owner.insurances.includes(:insurance).order("insurances.name ASC").each do |insurance|
+          rate_insurance_group.costs.build(agreement_zone_insurance: insurance, cost: 0, include_in_cost: false)
+        end
+      end
+    end
 end

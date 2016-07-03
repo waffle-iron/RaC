@@ -18,4 +18,5 @@ class AgreementZoneInsurance < ActiveRecord::Base
   belongs_to :agreement
   belongs_to :agreement_zone
   belongs_to :insurance
+  has_many :costs, class_name: "RateGroupInsuranceCost", dependent: :destroy
 end

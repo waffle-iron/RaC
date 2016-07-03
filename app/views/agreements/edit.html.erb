@@ -31,4 +31,4 @@
 <% end %>
 
 
-<%= render partial: 'zones', locals: {agreement: @agreement, zones: @zones, link: agreement_zone_add_remove_path(@agreement, ":id")} %>
+<%= render partial: 'zones', locals: {agreement: @agreement, zones: @zones, link: agreement_zone_add_remove_path(@agreement, ":id"), mode: :edit} %>

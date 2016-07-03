@@ -12,4 +12,5 @@
 class Zone < ActiveRecord::Base
   belongs_to :parent_zone, class_name: 'Zone', foreign_key: :parent_zone_id
   has_many :zones, class_name: 'Zone', foreign_key: :parent_zone_id, dependent: :destroy
+  has_many :agreement_zones, dependent: :destroy
 end

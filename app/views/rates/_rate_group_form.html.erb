@@ -1,0 +1,27 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Grupo</th>
+        <th>Desde</th>
+        <th>A</th>
+        <th>Costo</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= f.fields_for :groups do |g| %>
+          <tr>
+            <%= g.hidden_field :id %>
+            <%= g.hidden_field :rate_id %>
+            <%= g.hidden_field :agreement_zone_group_id %>
+            <%= g.hidden_field :agreement_zone_group_section_id %>
+            <td><%= g.object.agreement_zone_group.group %></td>
+            <td><%= g.object.agreement_zone_group_section.section %></td>
+            <td><%= g.object.agreement_zone_group_section.section_to %></td>
+            <td><%= g.number_field :cost %></td>
+            <td><%= g.check_box :_destroy %></td>
+          </tr>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>

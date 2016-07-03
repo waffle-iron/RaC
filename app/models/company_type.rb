@@ -9,4 +9,5 @@
 #
 
 class CompanyType < ActiveRecord::Base
+  has_many :companies, dependent: :destroy
 end

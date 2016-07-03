@@ -19,4 +19,5 @@
 
 class Company < ActiveRecord::Base
   belongs_to :company_type
+  has_many :agreements, dependent: :destroy
 end
