@@ -21,3 +21,11 @@
 <%= card ['Seguros', 'con Grupos'], @toolbar do %>
   <%= render partial: 'rate_insurance_list', locals: {rate: @rate, owner: @rate_owner } %>
 <% end %>
+
+<%= card ['Impuestos', ''], @toolbar do %>
+  <%= render partial: 'rate_tax_list', locals: {rate: @rate } %>
+<% end %>
+
+<%= card ['Extras', ''], @toolbar do %>
+  <%= render partial: 'rate_extra_list', locals: {rate: @rate } %>
+<% end %>

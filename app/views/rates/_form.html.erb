@@ -23,8 +23,14 @@
   <p class="c-black f-500 m-b-5 " >Grupos:</p>
   <%= render partial: 'rate_group_form', locals: {f: f} %>
 
-  <p class="c-black f-500 m-b-5 " >Grupos:</p>
+  <p class="c-black f-500 m-b-5 " >Seguros:</p>
   <%= render partial: 'rate_insurance_form', locals: {f: f, owner: owner} %>
+
+  <p class="c-black f-500 m-b-5 " >Impuestos:</p>
+  <%= render partial: 'rate_tax_form', locals: {f: f} %>
+
+  <p class="c-black f-500 m-b-5 " >Extras:</p>
+  <%= render partial: 'rate_extra_form', locals: {f: f} %>
 
   <%= f.submit 'Enviar'%>
 <% end %>

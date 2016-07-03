@@ -1,0 +1,24 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Impuesto</th>
+        <th>Costo</th>
+        <th>Incluir?</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= f.fields_for :taxes do |t| %>
+          <tr>
+            <%= t.hidden_field :id %>
+            <%= t.hidden_field :rate_id %>
+            <%= t.hidden_field :agreement_zone_tax_id %>
+            <td><%= t.object.agreement_zone_tax.tax.name %></td>
+            <td><%= t.number_field :cost %></td>
+            <td><%= t.check_box :include_in_cost %></td>
+            <td><%= t.check_box :_destroy %></td>
+          </tr>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>

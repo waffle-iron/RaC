@@ -1,0 +1,21 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Extra</th>
+        <th>Por Día</th>
+        <th>Máximo</th>
+        <th>Incluir?</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% rate.extras.each do |extra| %>
+          <tr>
+            <td><%= extra.agreement_zone_extra.extra.name %></td>
+            <td><%= extra.cost %></td>
+            <td><%= extra.max_cost %></td>
+            <td><%= check_box_tag :include, extra.include_in_cost, extra.include_in_cost, disabled: true %></td>
+          </tr>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>

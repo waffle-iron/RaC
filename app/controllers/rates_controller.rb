@@ -59,6 +59,8 @@ class RatesController < ApplicationController
       @rate = Rate.new({agreement: @agreement, agreement_zone: @agreement_zone, commission_base: 0})
       build_groups
       build_insurances
+      build_taxes
+      build_extras
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -69,11 +71,13 @@ class RatesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def rate_params
       group_attributes = [:id, :rate_id, :agreement_zone_group_id, :agreement_zone_group_section_id, :cost, :_destroy]
+      tax_attributes = [:id, :rate_id, :agreement_zone_tax_id, :cost, :include_in_cost, :_destroy]
+      extra_attributes = [:id, :rate_id, :agreement_zone_extra_id, :cost, :max_cost, :include_in_cost, :_destroy]
       insurance_cost_attributes = [:id, :rate_group_insurance_id, :agreement_zone_insurance_id, :cost, :include_in_cost]
 
       insurance_attributes = [:id, :agreement_zone_group_id, :rate_id, costs_attributes: insurance_cost_attributes]
 
-      params.require(:rate).permit(:code, :from, :to, :is_active, :is_offer, :commission_base, :agreement_zone_id, :agreement_id, groups_attributes: group_attributes, insurances_attributes: insurance_attributes)
+      params.require(:rate).permit(:code, :from, :to, :is_active, :is_offer, :commission_base, :agreement_zone_id, :agreement_id, groups_attributes: group_attributes, insurances_attributes: insurance_attributes, taxes_attributes: tax_attributes, extras_attributes: extra_attributes)
     end
 
     def set_agreement
@@ -136,6 +140,18 @@ class RatesController < ApplicationController
         @rate_owner.insurances.includes(:insurance).order("insurances.name ASC").each do |insurance|
           rate_insurance_group.costs.build(agreement_zone_insurance: insurance, cost: 0, include_in_cost: false)
         end
+      end
+    end
+
+    def build_taxes
+      @rate_owner.taxes.includes(:tax).order("taxes.name").each do |tax|
+        @rate.taxes.build(agreement_zone_tax: tax, include_in_cost: false, cost: 0)
+      end
+    end
+
+    def build_extras
+      @rate_owner.extras.includes(:extra).order("extras.name").each do |extra|
+        @rate.extras.build(agreement_zone_extra: extra, include_in_cost: false, cost: 0, max_cost: 0)
       end
     end
 end

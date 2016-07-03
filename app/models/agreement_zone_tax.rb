@@ -18,4 +18,5 @@ class AgreementZoneTax < ActiveRecord::Base
   belongs_to :agreement
   belongs_to :agreement_zone
   belongs_to :tax
+  has_many :costs, class_name: "RateTax", dependent: :destroy
 end

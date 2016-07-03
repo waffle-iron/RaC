@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702011114) do
+ActiveRecord::Schema.define(version: 20160703200120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,19 @@ ActiveRecord::Schema.define(version: 20160702011114) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rate_extras", force: :cascade do |t|
+    t.integer  "rate_id"
+    t.integer  "agreement_zone_extra_id"
+    t.decimal  "cost"
+    t.decimal  "max_cost"
+    t.boolean  "include_in_cost"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "rate_extras", ["agreement_zone_extra_id"], name: "index_rate_extras_on_agreement_zone_extra_id", using: :btree
+  add_index "rate_extras", ["rate_id"], name: "index_rate_extras_on_rate_id", using: :btree
+
   create_table "rate_group_insurance_costs", force: :cascade do |t|
     t.integer  "rate_group_insurance_id"
     t.integer  "agreement_zone_insurance_id"
@@ -174,6 +187,18 @@ ActiveRecord::Schema.define(version: 20160702011114) do
   add_index "rate_groups", ["agreement_zone_group_id"], name: "index_rate_groups_on_agreement_zone_group_id", using: :btree
   add_index "rate_groups", ["agreement_zone_group_section_id"], name: "index_rate_groups_on_agreement_zone_group_section_id", using: :btree
   add_index "rate_groups", ["rate_id"], name: "index_rate_groups_on_rate_id", using: :btree
+
+  create_table "rate_taxes", force: :cascade do |t|
+    t.integer  "rate_id"
+    t.integer  "agreement_zone_tax_id"
+    t.decimal  "cost"
+    t.boolean  "include_in_cost"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "rate_taxes", ["agreement_zone_tax_id"], name: "index_rate_taxes_on_agreement_zone_tax_id", using: :btree
+  add_index "rate_taxes", ["rate_id"], name: "index_rate_taxes_on_rate_id", using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.string   "code"
@@ -260,6 +285,8 @@ ActiveRecord::Schema.define(version: 20160702011114) do
   add_foreign_key "agreement_zones", "zones"
   add_foreign_key "agreements", "companies"
   add_foreign_key "companies", "company_types"
+  add_foreign_key "rate_extras", "agreement_zone_extras"
+  add_foreign_key "rate_extras", "rates"
   add_foreign_key "rate_group_insurance_costs", "agreement_zone_insurances"
   add_foreign_key "rate_group_insurance_costs", "rate_group_insurances"
   add_foreign_key "rate_group_insurances", "agreement_zone_groups"
@@ -267,6 +294,8 @@ ActiveRecord::Schema.define(version: 20160702011114) do
   add_foreign_key "rate_groups", "agreement_zone_group_sections"
   add_foreign_key "rate_groups", "agreement_zone_groups"
   add_foreign_key "rate_groups", "rates"
+  add_foreign_key "rate_taxes", "agreement_zone_taxes"
+  add_foreign_key "rate_taxes", "rates"
   add_foreign_key "rates", "agreement_zones"
   add_foreign_key "rates", "agreements"
 end

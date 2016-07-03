@@ -1,0 +1,18 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Impuesto</th>
+        <th>Costo</th>
+        <th>Incluir?</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% rate.taxes.each do |tax| %>
+          <tr>
+            <td><%= tax.agreement_zone_tax.tax.name %></td>
+            <td><%= tax.cost %></td>
+            <td><%= check_box_tag :include, tax.include_in_cost, tax.include_in_cost, disabled: true %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>

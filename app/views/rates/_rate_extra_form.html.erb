@@ -1,0 +1,26 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Extra</th>
+        <th>Por Día</th>
+        <th>Máximo</th>
+        <th>Incluir?</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= f.fields_for :extras do |e| %>
+          <tr>
+            <%= e.hidden_field :id %>
+            <%= e.hidden_field :rate_id %>
+            <%= e.hidden_field :agreement_zone_extra_id %>
+            <td><%= e.object.agreement_zone_extra.extra.name %></td>
+            <td><%= e.number_field :cost %></td>
+            <td><%= e.number_field :max_cost %></td>
+            <td><%= e.check_box :include_in_cost %></td>
+            <td><%= e.check_box :_destroy %></td>
+          </tr>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
