@@ -1,7 +1,7 @@
 
 <%= render '/layouts/block_header' %>
 
-<%= card ['Rates', 'Listado'], @toolbar do %>
+<%= card ['Tarifas', 'Listado'], @toolbar do %>
   <script type="text/javascript">
    var commands = function(column, row) {
      var show_command = '<%= table_button 'Ver', build_route(:show, 'rowId'), 'eye' %>';
@@ -17,19 +17,19 @@
         <th data-column-id="id" data-type="numeric">Id</th>
 
         <th data-column-id="code" >
-          Code
+          Codigo
         </th>
 
         <th data-column-id="from" >
-          From
+          Desde
         </th>
 
         <th data-column-id="to" >
-          To
+          A
         </th>
 
         <th data-column-id="is_active" >
-          Is active
+          Activo
         </th>
 
         <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
