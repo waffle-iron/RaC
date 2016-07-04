@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703200120) do
+ActiveRecord::Schema.define(version: 20160704115301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,8 +99,9 @@ ActiveRecord::Schema.define(version: 20160703200120) do
     t.integer  "company_id"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.decimal  "commission_base"
   end
 
   add_index "agreements", ["company_id"], name: "index_agreements_on_company_id", using: :btree

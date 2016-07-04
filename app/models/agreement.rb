@@ -2,12 +2,13 @@
 #
 # Table name: agreements
 #
-#  id         :integer          not null, primary key
-#  company_id :integer
-#  start_date :date
-#  end_date   :date
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  company_id      :integer
+#  start_date      :date
+#  end_date        :date
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  commission_base :decimal(, )
 #
 
 class Agreement < ActiveRecord::Base

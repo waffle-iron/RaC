@@ -14,6 +14,7 @@
   <%= f.collection_select :company_id, Company.order(:name), :id, :name, include_blank: true, label: 'Empresa'%>
   <%= f.date_select :start_date, label: 'Vigente desde'%>
   <%= f.date_select :end_date, label: 'Vigente hasta'%>
+  <%= f.number_field :commission_base, label: 'Comision base'%>
 
     <%= f.submit 'Enviar'%>
 <% end %>

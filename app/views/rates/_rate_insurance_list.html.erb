@@ -9,10 +9,10 @@
       </tr>
     </thead>
     <tbody>
-      <% rate.insurances.each do |insurance| %>
+      <% rate.insurances.includes(:agreement_zone_group, :costs).order("agreement_zone_groups.group").each do |insurance| %>
         <tr>
           <td><%= insurance.agreement_zone_group.group %></td>
-          <% insurance.costs.includes(agreement_zone_insurance: :insurance).order("insurances.name").each do |cost| %>
+          <% insurance.costs.includes(agreement_zone_insurance: :insurance).order("insurances.name ASC").each do |cost| %>
             <td><%= cost.cost %></td>
             <td><%= check_box_tag :include, cost.include_in_cost, cost.include_in_cost, disabled: true %></td>
           <% end %>

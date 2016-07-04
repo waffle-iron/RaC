@@ -148,7 +148,7 @@ class RatesController < ApplicationController
 
     def build_groups
       @rate_owner.groups.order(:group).each do |group|
-        @rate_owner.group_sections.each do |group_section|
+        @rate_owner.group_sections.order(:section).each do |group_section|
           @rate.groups.build(agreement_zone_group: group, agreement_zone_group_section: group_section, cost: 0)
         end
       end
