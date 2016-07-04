@@ -7,7 +7,7 @@ class RatesController < ApplicationController
 
   # GET /rates
   def index
-    @rates = Rate.all
+    @rates = @rate_owner.rates
   end
 
   # GET /rates/1
@@ -85,11 +85,11 @@ class RatesController < ApplicationController
     end
 
     def set_agreement_zone
-      @agreeement_zone = AgreementZone.where(id: params[:agreement_zone_id]).first
+      @agreement_zone = AgreementZone.where(id: params[:zone_id]).first
     end
 
     def set_rate_owner
-      @rate_owner = @agreeement_zone || @agreement
+      @rate_owner = @agreement_zone || @agreement
     end
 
     def build_toolbar(current_action = nil)
@@ -106,20 +106,40 @@ class RatesController < ApplicationController
       ret = nil
 
       unless mode
-        mode = :create if action_name == "new"
-        mode = :update if action_name == "edit"
+        case action_name
+        when "new", "create"
+          mode = :create
+        when "edit", "update"
+          mode = :update
+        end
       end
 
       if @agreement_zone
-        ret = new_agreement_zone_rate_path(@agreement, @agreement_zone) if mode == :new
-        ret = agreement_zone_rates_path(@agreement, @agreement_zone) if [:create, :index].include?(mode)
-        ret = edit_agreement_zone_rate_path(@agreement, @agreement_zone, mark || @rate) if mode == :edit
-        ret = agreement_zone_rate_path(@agreement, @agreement_zone, mark || @rate) if [:show, :update, :delete].include?(mode)
+        ret = case mode
+              when :new
+                new_agreement_zone_rate_path(@agreement, @agreement_zone)
+              when :create, :index
+                agreement_zone_rates_path(@agreement, @agreement_zone)
+              when :edit
+                edit_agreement_zone_rate_path(@agreement, @agreement_zone, mark || @rate)
+              when :show, :update, :delete
+                agreement_zone_rate_path(@agreement, @agreement_zone, mark || @rate)
+              else
+                nil
+              end
       else
-        ret = new_agreement_rate_path(@agreement) if mode == :new
-        ret = agreement_rates_path(@agreement) if [:create, :index].include?(mode)
-        ret = edit_agreement_rate_path(@agreement, mark || @rate) if mode == :edit
-        ret = agreement_rate_path(@agreement, mark || @rate) if [:show, :update, :delete].include?(mode)
+        ret = case mode
+              when :new
+                new_agreement_rate_path(@agreement)
+              when :create, :index
+                agreement_rates_path(@agreement)
+              when :edit
+                edit_agreement_rate_path(@agreement, mark || @rate)
+              when :show, :update, :delete
+                agreement_rate_path(@agreement, mark || @rate)
+              else
+                nil
+              end
       end
       ret
     end
