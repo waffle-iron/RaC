@@ -26,7 +26,7 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
 
   def number_field(method, options = {})
     label_option = options[:label]
-    options = options.except(:label).merge({autocomplete: 'off'})
+    options = options.except(:label).merge({autocomplete: 'off', step: 'any'})
     options = options.except(:label).merge({class:'input-sm form-control fg-input'}) unless options[:class]
     super_content = super
     @template.content_tag :div, class: 'form-group fg-float' do
