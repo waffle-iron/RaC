@@ -32,6 +32,10 @@
           Activo
         </th>
 
+        <th data-column-id="is_offer" >
+          Oferta
+        </th>
+
         <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
       </tr>
     </thead>
@@ -46,7 +50,9 @@
 
         <td><%= rate.to %></td>
 
-        <td><%= rate.is_active %></td>
+        <td><%= rate.is_active ? 'Activo' : ''  %></td>
+
+        <td><%= rate.is_offer ? 'Oferta' : '' %></td>
 
         <td>
         </td>

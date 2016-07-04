@@ -5,8 +5,8 @@
   <%= card_text_field_readonly @rate.code, label: 'Codigo' %>
   <%= card_text_field_readonly @rate.from, label: 'Desde' %>
   <%= card_text_field_readonly @rate.to, label: 'A' %>
-  <%= card_text_field_readonly @rate.is_active, label: 'Activo' %>
-  <%= card_text_field_readonly @rate.is_offer, label: 'Oferta' %>
+  <%= card_check_box @rate.is_active, label: 'Activo' %>
+  <%= card_check_box @rate.is_offer, label: 'Oferta' %>
   <%= card_text_field_readonly @rate.commission_base, label: 'Comision base' %>
 
 <% end %>

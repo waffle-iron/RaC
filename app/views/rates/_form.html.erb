@@ -17,6 +17,9 @@
   <%= f.text_field :code, label: 'Codigo'%>
   <%= f.date_select :from, label: 'Desde'%>
   <%= f.date_select :to, label: 'A'%>
+  <%= f.check_box :is_active, label: 'Activo', checked: @rate.is_active %>
+  <%= f.check_box :is_offer, label: 'Oferta', checked: @rate.is_offer %>
+
   <%= f.text_field :commission_base, label: 'Comision base'%>
 
 
