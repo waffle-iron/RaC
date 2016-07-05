@@ -77,7 +77,7 @@ class RatesController < ApplicationController
 
       insurance_attributes = [:id, :agreement_zone_group_id, :rate_id, costs_attributes: insurance_cost_attributes]
 
-      params.require(:rate).permit(:code, :from, :to, :is_active, :is_offer, :commission_base, :agreement_zone_id, :agreement_id, groups_attributes: group_attributes, insurances_attributes: insurance_attributes, taxes_attributes: tax_attributes, extras_attributes: extra_attributes)
+      params.require(:rate).permit(:code, :from, :to, :is_active, :is_offer, :commission_base, :agreement_zone_id, :sale_type_id, :agreement_id, groups_attributes: group_attributes, insurances_attributes: insurance_attributes, taxes_attributes: tax_attributes, extras_attributes: extra_attributes)
     end
 
     def set_agreement

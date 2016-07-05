@@ -13,11 +13,13 @@
 #  agreement_id      :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  sale_type_id      :integer
 #
 
 class Rate < ActiveRecord::Base
   belongs_to :agreement_zone
   belongs_to :agreement
+  belongs_to :sale_type
   has_many :groups, class_name: "RateGroup", dependent: :destroy, autosave: true
   has_many :insurances, class_name: "RateGroupInsurance", dependent: :destroy, autosave: true
   has_many :taxes, class_name: "RateTax", dependent: :destroy, autosave: true

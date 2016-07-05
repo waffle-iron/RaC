@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704115301) do
+ActiveRecord::Schema.define(version: 20160704121906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,10 +212,12 @@ ActiveRecord::Schema.define(version: 20160704115301) do
     t.integer  "agreement_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "sale_type_id"
   end
 
   add_index "rates", ["agreement_id"], name: "index_rates_on_agreement_id", using: :btree
   add_index "rates", ["agreement_zone_id"], name: "index_rates_on_agreement_zone_id", using: :btree
+  add_index "rates", ["sale_type_id"], name: "index_rates_on_sale_type_id", using: :btree
 
   create_table "sale_types", force: :cascade do |t|
     t.string   "name"
@@ -299,4 +301,5 @@ ActiveRecord::Schema.define(version: 20160704115301) do
   add_foreign_key "rate_taxes", "rates"
   add_foreign_key "rates", "agreement_zones"
   add_foreign_key "rates", "agreements"
+  add_foreign_key "rates", "sale_types"
 end

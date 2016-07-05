@@ -9,4 +9,5 @@
 #
 
 class SaleType < ActiveRecord::Base
+  has_many :rates, dependent: :destroy
 end

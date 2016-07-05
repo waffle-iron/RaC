@@ -8,6 +8,7 @@
   <%= card_check_box @rate.is_active, label: 'Activo' %>
   <%= card_check_box @rate.is_offer, label: 'Oferta' %>
   <%= card_text_field_readonly @rate.commission_base, label: 'Comision base' %>
+  <%= card_text_field_readonly @rate.sale_type&.name, label: 'Tipo de Venta' %>
 
 <% end %>
 
