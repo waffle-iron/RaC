@@ -51,7 +51,7 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
 
   def check_box(method, options = {}, checked_value = "true", unchecked_value = "false")
     label_option = options[:label]
-    options = options.except(:label)
+    options = options.except(:label).merge({checked: @object[method]})
     super_content = ActionView::Helpers::Tags::CheckBox.new(object_name, method, self, checked_value, unchecked_value, options).render
     @template.content_tag :div, class: 'form-group fg-float checkbox m-b-15' do
       @template.content_tag :div, class: 'fg-line' do
