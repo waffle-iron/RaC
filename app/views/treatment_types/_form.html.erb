@@ -1,0 +1,16 @@
+<%= form_for(@treatment_type, builder: ThemeBuilder) do |f| %>
+  <% if @treatment_type.errors.any? %>
+    <hr/>
+    <div class="has-error">
+      <ul>
+      <% @treatment_type.errors.full_messages.each do |message| %>
+        <li><i class="input-helper"><%= message %></i></li>
+      <% end %>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+
+    <%= f.text_field :name, label: 'Name'%>
+    <%= f.submit 'Enviar'%>
+<% end %>

@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_treatment_type_path, 'plus' %>
+<% toolbar.add_button 'Lista', treatment_types_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Treatment Types', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

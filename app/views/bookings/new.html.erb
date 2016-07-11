@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_booking_path, 'plus' %>
+<% toolbar.add_button 'Lista', bookings_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Bookings', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

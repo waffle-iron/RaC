@@ -1,0 +1,6 @@
+<%= f.fields_for :customer do |c| %>
+  <%= c.collection_select :treatment_type_id, TreatmentType.order(:name), :id, :name, {label: 'Treatment'} %>
+  <%= c.text_field :first_name, label: 'First name'%>
+  <%= c.text_field :last_name, label: 'Last name'%>
+  <%= c.collection_select :nationality_id, Nationality.order(:name), :id, :name, {label: 'Nationality'} %>
+<% end %>

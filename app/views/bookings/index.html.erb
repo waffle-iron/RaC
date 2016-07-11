@@ -1,0 +1,126 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_booking_path, 'plus' %>
+<% toolbar.add_button 'Lista', bookings_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Bookings', 'Listado'], toolbar do %>
+  <script type="text/javascript">
+   var commands = function(column, row) {
+     var show_command = '<%= table_button 'Ver', booking_path('rowId'), 'eye' %>';
+     var edit_command = '<%= table_button 'Editar', edit_booking_path('rowId'), 'edit' %>';
+     var delete_command = '<%= table_button 'Eliminar', booking_path('rowId'), 'delete', {'redirect_to' => 'bookings'}, 'command-delete' %>';
+
+     return (show_command + edit_command + delete_command).replace(new RegExp('rowId', 'g'), row.id);
+     };
+  </script>
+  <table id="data-table-command" class="table table-striped table-vmiddle">
+    <thead>
+      <tr>
+        <th data-column-id="id" data-type="numeric">Id</th>
+
+        <th data-column-id="zone" >
+          Zone
+        </th>
+
+        <th data-column-id="delivery_date" >
+          Delivery date
+        </th>
+
+        <th data-column-id="delivery_location" >
+          Delivery location
+        </th>
+
+        <th data-column-id="days_number" data-type='numeric'>
+          Days number
+        </th>
+
+        <th data-column-id="return_location" >
+          Return location
+        </th>
+
+        <th data-column-id="ttoo_id" data-type='numeric'>
+          Ttoo
+        </th>
+
+        <th data-column-id="rac_id" data-type='numeric'>
+          Rac
+        </th>
+
+        <th data-column-id="agreement_zone_group" >
+          Agreement zone group
+        </th>
+
+        <th data-column-id="booking_number" >
+          Booking number
+        </th>
+
+        <th data-column-id="external_reference" >
+          External reference
+        </th>
+
+        <th data-column-id="place_type" >
+          Place type
+        </th>
+
+        <th data-column-id="place_name" >
+          Place name
+        </th>
+
+        <th data-column-id="fly_room" >
+          Fly room
+        </th>
+
+        <th data-column-id="user" >
+          User
+        </th>
+
+        <th data-column-id="customer" >
+          Customer
+        </th>
+
+        <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.id %></td>
+
+        <td><%= booking.zone %></td>
+
+        <td><%= booking.delivery_date %></td>
+
+        <td><%= booking.delivery_location %></td>
+
+        <td><%= booking.days_number %></td>
+
+        <td><%= booking.return_location %></td>
+
+        <td><%= booking.ttoo_id %></td>
+
+        <td><%= booking.rac_id %></td>
+
+        <td><%= booking.agreement_zone_group %></td>
+
+        <td><%= booking.booking_number %></td>
+
+        <td><%= booking.external_reference %></td>
+
+        <td><%= booking.place_type %></td>
+
+        <td><%= booking.place_name %></td>
+
+        <td><%= booking.fly_room %></td>
+
+        <td><%= booking.user %></td>
+
+        <td><%= booking.customer %></td>
+
+        <td>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,15 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_place_type_path, 'plus' %>
+<% toolbar.add_button 'Ver', place_type_path(@place_type), 'eye' %>
+<% toolbar.add_button 'Editar', edit_place_type_path(@place_type), 'edit' %>
+<% toolbar.add_button 'Lista', place_types_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', place_type_path(@place_type), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Place Types', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @place_type.name, label: 'Name' %>
+
+
+<% end %>

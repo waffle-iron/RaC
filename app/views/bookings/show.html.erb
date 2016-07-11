@@ -1,0 +1,29 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_booking_path, 'plus' %>
+<% toolbar.add_button 'Ver', booking_path(@booking), 'eye' %>
+<% toolbar.add_button 'Editar', edit_booking_path(@booking), 'edit' %>
+<% toolbar.add_button 'Lista', bookings_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', booking_path(@booking), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Bookings', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @booking.zone_id, label: 'Zone' %>
+  <%= card_text_field_readonly @booking.delivery_date, label: 'Delivery date' %>
+  <%= card_text_field_readonly @booking.delivery_location, label: 'Delivery location' %>
+  <%= card_text_field_readonly @booking.days_number, label: 'Days number' %>
+  <%= card_text_field_readonly @booking.return_location, label: 'Return location' %>
+  <%= card_text_field_readonly @booking.ttoo_id, label: 'Ttoo' %>
+  <%= card_text_field_readonly @booking.rac_id, label: 'Rac' %>
+  <%= card_text_field_readonly @booking.agreement_zone_group_id, label: 'Agreement zone group' %>
+  <%= card_text_field_readonly @booking.booking_number, label: 'Booking number' %>
+  <%= card_text_field_readonly @booking.external_reference, label: 'External reference' %>
+  <%= card_text_field_readonly @booking.place_type, label: 'Place type' %>
+  <%= card_text_field_readonly @booking.place_name, label: 'Place name' %>
+  <%= card_text_field_readonly @booking.fly_room, label: 'Fly room' %>
+  <%= card_text_field_readonly @booking.user_id, label: 'User' %>
+  <%= card_text_field_readonly @booking.customer_id, label: 'Customer' %>
+
+
+<% end %>

@@ -1,0 +1,11 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_nationality_path, 'plus' %>
+<% toolbar.add_button 'Lista', nationalities_path, 'view-list-alt' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Nationalities', 'Nuevo'], toolbar do %>
+
+<%= render 'form' %>
+
+<% end %>

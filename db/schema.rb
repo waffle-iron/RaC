@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704121906) do
+ActiveRecord::Schema.define(version: 20160707185858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,30 @@ ActiveRecord::Schema.define(version: 20160704121906) do
 
   add_index "agreements", ["company_id"], name: "index_agreements_on_company_id", using: :btree
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "zone_id"
+    t.datetime "delivery_date"
+    t.string   "delivery_location"
+    t.integer  "days_number"
+    t.string   "return_location"
+    t.integer  "ttoo_id"
+    t.integer  "rac_id"
+    t.integer  "agreement_zone_group_id"
+    t.string   "booking_number"
+    t.string   "external_reference"
+    t.integer  "place_type_id"
+    t.string   "place_name"
+    t.string   "fly_room"
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "bookings", ["agreement_zone_group_id"], name: "index_bookings_on_agreement_zone_group_id", using: :btree
+  add_index "bookings", ["place_type_id"], name: "index_bookings_on_place_type_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+  add_index "bookings", ["zone_id"], name: "index_bookings_on_zone_id", using: :btree
+
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "tradename"
@@ -129,6 +153,20 @@ ActiveRecord::Schema.define(version: 20160704121906) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.integer  "treatment_type_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "nationality_id"
+    t.integer  "booking_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "customers", ["booking_id"], name: "index_customers_on_booking_id", using: :btree
+  add_index "customers", ["nationality_id"], name: "index_customers_on_nationality_id", using: :btree
+  add_index "customers", ["treatment_type_id"], name: "index_customers_on_treatment_type_id", using: :btree
+
   create_table "extras", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -136,6 +174,18 @@ ActiveRecord::Schema.define(version: 20160704121906) do
   end
 
   create_table "insurances", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nationalities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "place_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -231,6 +281,12 @@ ActiveRecord::Schema.define(version: 20160704121906) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "treatment_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "type_categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -287,7 +343,14 @@ ActiveRecord::Schema.define(version: 20160704121906) do
   add_foreign_key "agreement_zones", "agreements"
   add_foreign_key "agreement_zones", "zones"
   add_foreign_key "agreements", "companies"
+  add_foreign_key "bookings", "agreement_zone_groups"
+  add_foreign_key "bookings", "place_types"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "zones"
   add_foreign_key "companies", "company_types"
+  add_foreign_key "customers", "bookings"
+  add_foreign_key "customers", "nationalities"
+  add_foreign_key "customers", "treatment_types"
   add_foreign_key "rate_extras", "agreement_zone_extras"
   add_foreign_key "rate_extras", "rates"
   add_foreign_key "rate_group_insurance_costs", "agreement_zone_insurances"

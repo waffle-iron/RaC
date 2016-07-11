@@ -1,0 +1,15 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_nationality_path, 'plus' %>
+<% toolbar.add_button 'Ver', nationality_path(@nationality), 'eye' %>
+<% toolbar.add_button 'Editar', edit_nationality_path(@nationality), 'edit' %>
+<% toolbar.add_button 'Lista', nationalities_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', nationality_path(@nationality), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Nationalities', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @nationality.name, label: 'Name' %>
+
+
+<% end %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :bookings
+  resources :customers
+  resources :nationalities
+  resources :place_types
+  resources :treatment_types
   resources :rates
   resources :sale_types
   resources :agreements do

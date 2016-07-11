@@ -104,6 +104,23 @@ class ThemeBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def datetime_select(method, options = {})
+    existing_date = object.send(method)
+    # formatted_date = existing_date.to_date.strftime("%F") if existing_date.present?
+    formatted_date = existing_date.to_date.strftime("%d-%m-%Y") if existing_date.present?
+
+    label_option = options[:label]
+    options = options.except(:label).merge({class:'form-control date-time-picker', autocomplete: 'off', value: formatted_date})
+    # options.merge!({:"data-date-format" => "DD-MM-YYYY"})
+    super_content = ActionView::Helpers::Tags::TextField.new(object_name, method, self, options).render
+    @template.content_tag :div, class: 'form-group fg-float' do
+      @template.content_tag :div, class: 'fg-line' do
+        @template.concat super_content
+        @template.concat label label_option, class: 'fg-label' if label_option
+      end
+    end
+  end
+
   def xdate_select(method, options = {}, html_options = {})
     existing_date = @object.send(method)
     formatted_date = existing_date.to_date.strftime("%F") if existing_date.present?

@@ -1,0 +1,20 @@
+<% toolbar = Theme::Toolbar.new %>
+<% toolbar.add_button 'Nuevo', new_customer_path, 'plus' %>
+<% toolbar.add_button 'Ver', customer_path(@customer), 'eye' %>
+<% toolbar.add_button 'Editar', edit_customer_path(@customer), 'edit' %>
+<% toolbar.add_button 'Lista', customers_path, 'view-list-alt' %>
+<% toolbar.add_button 'Eliminar', customer_path(@customer), 'delete' %>
+
+<%= render '/layouts/block_header' %>
+
+<%= card ['Customers', 'Detalles'], toolbar do %>
+
+  <%= card_text_field_readonly @customer.treatment_type_id, label: 'Treatment type' %>
+  <%= card_text_field_readonly @customer.first_name, label: 'First name' %>
+  <%= card_text_field_readonly @customer.last_name, label: 'Last name' %>
+  <%= card_text_field_readonly @customer.nationality_id, label: 'Nationality' %>
+  <%= card_text_field_readonly @customer.state, label: 'State' %>
+  <%= card_text_field_readonly @customer.registration, label: 'Registration' %>
+
+
+<% end %>

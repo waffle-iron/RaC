@@ -1,0 +1,13 @@
+<%= form_for(@customer, builder: ThemeBuilder) do |f| %>
+  <%= f.collection_select :treatment_type_id, TreatmentType.order(:name), :id, :name, {label: 'Treatment'} %>
+
+  <%= f.text_field :first_name, label: 'First name'%>
+  <%= f.text_field :last_name, label: 'Last name'%>
+  <%= f.collection_select :nationality_id, Nationality.order(:name), :id, :name, {label: 'Nationality'} %>
+
+  <%= f.text_field :state, label: 'State'%>
+
+  <%= f.text_field :registration, label: 'Registration'%>
+
+  <%= f.submit 'Enviar'%>
+<% end %>
