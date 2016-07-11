@@ -17,7 +17,7 @@
     <%= f.number_field :days_number, label: 'Days number'%>
     <%= f.text_field :return_location, label: 'Return location'%>
 
-    <%= f.collection_select :ttoo_id, Company.joins(:company_type).where("company_types.name = ?", "TTO").order(:name), :id, :name, {label: 'Tour Operador'} %>
+    <%= f.collection_select :ttoo_id, Company.joins(:company_type).where("company_types.name = ?", "TTOO").order(:name), :id, :name, {label: 'Tour Operador'} %>
 
     <%= f.collection_select :rac_id, Company.joins(:company_type).where("company_types.name = ?", "Rent A Car").order(:name), :id, :name, {label: 'Rent a Car'} %>
 
