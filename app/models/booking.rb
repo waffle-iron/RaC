@@ -33,4 +33,19 @@ class Booking < ActiveRecord::Base
 
   accepts_nested_attributes_for :customer, :allow_destroy => true
 
+  # attr_reader
+  def agreement_zone_group_id
+    self[:agreement_zone_group_id]
+  end
+
+  # attr_writer
+  def agreement_zone_group_id=(val)
+    self[:agreement_zone_group_id] = val
+  end
+
+  # virtual attribute
+  def agreement_zone_group_id
+    #return true/false
+  end
+
 end
