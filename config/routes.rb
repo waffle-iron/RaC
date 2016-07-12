@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :bookings
   resources :customers
   resources :nationalities
   resources :place_types
@@ -14,6 +13,8 @@ Rails.application.routes.draw do
     get '/add_remove_tax/:tax_id', to: 'agreement_taxes#add_remove', as: :add_remove_tax
     get '/add_remove_insurance/:insurance_id', to: 'agreement_insurances#add_remove', as: :add_remove_insurance
 
+
+
     resources :agreement_zones, as: :zones, only: [:show, :edit] do
       resources :rates
       get '/add_remove_zone', to: :add_remove, as: :add_remove
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
       get '/add_remove_tax/:tax_id', to: 'agreement_zone_taxes#add_remove', as: :add_remove_tax
       get '/add_remove_insurance/:insurance_id', to: 'agreement_zone_insurances#add_remove', as: :add_remove_insurance
       get '/add_remove_extra/:extra_id', to: 'agreement_zone_extras#add_remove', as: :add_remove_extra
+      resources :bookings
     end
   end
   resources :insurances

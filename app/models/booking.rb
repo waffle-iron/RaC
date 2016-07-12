@@ -3,7 +3,6 @@
 # Table name: bookings
 #
 #  id                      :integer          not null, primary key
-#  zone_id                 :integer
 #  delivery_date           :datetime
 #  delivery_location       :string
 #  days_number             :integer
@@ -19,16 +18,18 @@
 #  user_id                 :integer
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  agreement_zone_id       :integer
 #
 
 class Booking < ActiveRecord::Base
-  belongs_to :zone
-  belongs_to :agreement_zone_group
+  belongs_to :agreement_zone
+  belongs_to :rate_group
   belongs_to :user
   has_one :customer, dependent: :destroy, autosave: true
   belongs_to :tour_operator, class_name: "Company", foreign_key: :ttoo_id
   belongs_to :renta_car, class_name: "Company", foreign_key: :rac_id
   belongs_to :place_type
+  belongs_to :agreement_zone
 
   accepts_nested_attributes_for :customer, :allow_destroy => true
 

@@ -12,7 +12,7 @@
 class RateGroupInsurance < ActiveRecord::Base
   belongs_to :rate
   belongs_to :agreement_zone_group
-  has_many :costs, class_name: "RateGroupInsuranceCost", dependent: :destroy, autosave: true
+  has_many :costs, class_name: 'RateGroupInsuranceCost', dependent: :destroy, autosave: true
 
   accepts_nested_attributes_for :costs, :allow_destroy => true
 end

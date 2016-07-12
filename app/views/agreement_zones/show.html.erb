@@ -2,6 +2,7 @@
 <% toolbar.add_button 'Editar', edit_agreement_zone_path(@agreement_zone.agreement, @agreement_zone.zone), 'edit' %>
 <% toolbar.add_button 'Lista', agreement_path(@agreement_zone.agreement), 'view-list-alt' %>
 <% toolbar.add_button 'Tarifas', agreement_zone_rates_path(@agreement.id, @agreement_zone.id), 'money-box' %>
+<% toolbar.add_button 'Reservas', agreement_zone_bookings_path(@agreement.id, @agreement_zone.id), 'car' %>
 
 <%= render '/layouts/block_header' %>
 

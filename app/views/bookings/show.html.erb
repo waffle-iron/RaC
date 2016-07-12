@@ -1,9 +1,5 @@
-<% toolbar = Theme::Toolbar.new %>
-<% toolbar.add_button 'Nuevo', new_booking_path, 'plus' %>
-<% toolbar.add_button 'Ver', booking_path(@booking), 'eye' %>
-<% toolbar.add_button 'Editar', edit_booking_path(@booking), 'edit' %>
-<% toolbar.add_button 'Lista', bookings_path, 'view-list-alt' %>
-<% toolbar.add_button 'Eliminar', booking_path(@booking), 'delete' %>
+<% toolbar = toolbar(:show) %>
+
 
 <%= render '/layouts/block_header' %>
 

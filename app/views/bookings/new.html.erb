@@ -1,6 +1,4 @@
-<% toolbar = Theme::Toolbar.new %>
-<% toolbar.add_button 'Nuevo', new_booking_path, 'plus' %>
-<% toolbar.add_button 'Lista', bookings_path, 'view-list-alt' %>
+<% toolbar = toolbar(:new) %>
 
 <%= render '/layouts/block_header' %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707185858) do
+ActiveRecord::Schema.define(version: 20160712172151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,28 +107,28 @@ ActiveRecord::Schema.define(version: 20160707185858) do
   add_index "agreements", ["company_id"], name: "index_agreements_on_company_id", using: :btree
 
   create_table "bookings", force: :cascade do |t|
-    t.integer  "zone_id"
     t.datetime "delivery_date"
     t.string   "delivery_location"
     t.integer  "days_number"
     t.string   "return_location"
     t.integer  "ttoo_id"
     t.integer  "rac_id"
-    t.integer  "agreement_zone_group_id"
     t.string   "booking_number"
     t.string   "external_reference"
     t.integer  "place_type_id"
     t.string   "place_name"
     t.string   "fly_room"
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "agreement_zone_id"
+    t.integer  "rate_group_id"
   end
 
-  add_index "bookings", ["agreement_zone_group_id"], name: "index_bookings_on_agreement_zone_group_id", using: :btree
+  add_index "bookings", ["agreement_zone_id"], name: "index_bookings_on_agreement_zone_id", using: :btree
   add_index "bookings", ["place_type_id"], name: "index_bookings_on_place_type_id", using: :btree
+  add_index "bookings", ["rate_group_id"], name: "index_bookings_on_rate_group_id", using: :btree
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
-  add_index "bookings", ["zone_id"], name: "index_bookings_on_zone_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -343,10 +343,10 @@ ActiveRecord::Schema.define(version: 20160707185858) do
   add_foreign_key "agreement_zones", "agreements"
   add_foreign_key "agreement_zones", "zones"
   add_foreign_key "agreements", "companies"
-  add_foreign_key "bookings", "agreement_zone_groups"
+  add_foreign_key "bookings", "agreement_zones"
   add_foreign_key "bookings", "place_types"
+  add_foreign_key "bookings", "rate_groups"
   add_foreign_key "bookings", "users"
-  add_foreign_key "bookings", "zones"
   add_foreign_key "companies", "company_types"
   add_foreign_key "customers", "bookings"
   add_foreign_key "customers", "nationalities"

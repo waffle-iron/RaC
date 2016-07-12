@@ -1,39 +1,43 @@
-<%= form_for(@booking, builder: ThemeBuilder) do |f| %>
+<% route = @booking.id ? agreement_zone_booking_path(@agreement, @agreement_zone, @booking) : agreement_zone_bookings_path(@agreement, @agreement_zone) %>
+
+<%= form_for(@booking, builder: ThemeBuilder, url: route) do |f| %>
   <% if @booking.errors.any? %>
     <hr/>
     <div class="has-error">
       <ul>
-      <% @booking.errors.full_messages.each do |message| %>
-        <li><i class="input-helper"><%= message %></i></li>
-      <% end %>
+        <% @booking.errors.full_messages.each do |message| %>
+          <li><i class="input-helper"><%= message %></i></li>
+        <% end %>
       </ul>
     </div>
     <hr/>
   <% end %>
 
-    <%= f.text_field :zone_id, label: 'Zone'%>
-    <%= f.datetime_select :delivery_date, label: 'Delivery date'%>
-    <%= f.text_field :delivery_location, label: 'Delivery location'%>
-    <%= f.number_field :days_number, label: 'Days number'%>
-    <%= f.text_field :return_location, label: 'Return location'%>
+  <%= f.hidden_field :agreement_zone_id %>
+  <%= f.hidden_field :ttoo_id %>
 
-    <%= f.collection_select :ttoo_id, Company.joins(:company_type).where("company_types.name = ?", "TTOO").order(:name), :id, :name, {label: 'Tour Operador'} %>
+  <%= card_text_field_readonly f.object.agreement_zone.agreement.company.name, label: 'Tour Operador' %>
+  <%= card_text_field_readonly f.object.agreement_zone.zone.name, label: 'Zone' %>
 
-    <%= f.collection_select :rac_id, Company.joins(:company_type).where("company_types.name = ?", "Rent A Car").order(:name), :id, :name, {label: 'Rent a Car'} %>
+  <%= f.datetime_select :delivery_date, label: 'Delivery date' %>
+  <%= f.text_field :delivery_location, label: 'Delivery location' %>
+  <%= f.number_field :days_number, label: 'Days number' %>
+  <%= f.text_field :return_location, label: 'Return location' %>
 
+  <%= f.collection_select :agreement_zone_group_id, @agreement_zone.groups.order(:group), :id, :group, {label: 'Grupo'} %>
 
-    <%= f.collection_select :agreement_zone_group_id, Agreement.first.groups.order(:group), :id, :group, {label: 'Grupo'} %>
+  <%= f.text_field :booking_number, label: 'Booking number' %>
+  <%= f.text_field :external_reference, label: 'External reference' %>
+  <%= f.collection_select :place_type_id, PlaceType.order(:name), :id, :name, {label: 'Place type'} %>
 
-    <%= f.text_field :booking_number, label: 'Booking number'%>
-    <%= f.text_field :external_reference, label: 'External reference'%>
-    <%= f.collection_select :place_type_id, PlaceType.order(:name), :id, :name, {label: 'Place type'} %>
+  <%= f.text_field :place_name, label: 'Place name' %>
+  <%= f.text_field :fly_room, label: 'Fly room' %>
+  <%= f.collection_select :user_id, User.order(:name), :id, :name, {label: 'Guia'} %>
 
-    <%= f.text_field :place_name, label: 'Place name'%>
-    <%= f.text_field :fly_room, label: 'Fly room'%>
-    <%= f.collection_select :user_id, User.order(:name), :id, :name, {label: 'Guia'} %>
+  <p class="c-black f-500 m-b-5 ">Cliente:</p>
+  <%= render partial: 'customer_form', locals: {f: f} %>
 
-    <p class="c-black f-500 m-b-5 " >Cliente:</p>
-    <%= render partial: 'customer_form', locals: {f: f} %>
+  <%= f.collection_select :rac_id, Company.joins(:company_type).where("company_types.name = ?", "Rent A Car").order(:name), :id, :name, {label: 'Rent a Car'} %>
 
-    <%= f.submit 'Enviar'%>
+  <%= f.submit 'Enviar' %>
 <% end %>

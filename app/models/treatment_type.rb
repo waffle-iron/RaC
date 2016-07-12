@@ -9,5 +9,5 @@
 #
 
 class TreatmentType < ActiveRecord::Base
-	has_many :bookings, dependent: :restrict_with_error
+
 end

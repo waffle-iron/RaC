@@ -18,5 +18,5 @@ class AgreementZone < ActiveRecord::Base
   has_many :insurances, class_name: "AgreementZoneInsurance", dependent: :destroy
   has_many :taxes, class_name: "AgreementZoneTax", dependent: :destroy
   has_many :rates, dependent: :destroy
-
+  has_many :bookings, dependent: :restrict_with_error
 end
