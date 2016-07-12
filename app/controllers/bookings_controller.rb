@@ -71,7 +71,7 @@ class BookingsController < AgreementBaseController
 
     # Only allow a trusted parameter "white list" through.
     def booking_params
-      params.require(:booking).permit(:agreement_zone_id, :delivery_date, :delivery_location, :days_number, :return_location, :ttoo_id, :rac_id, :agreement_zone_group_id, :booking_number, :external_reference, :place_type, :place_name, :fly_room, :user_id, :customer_id)
+      params.require(:booking).permit(:agreement_zone_id, :delivery_date, :delivery_location, :days_number, :return_location, :ttoo_id, :rac_id, :agreement_zone_group_id, :booking_number, :external_reference, :place_type, :place_name, :fly_room, :user_id, :customer_id, :rate_group_id)
     end
 
     def set_agreement_zone
@@ -81,5 +81,13 @@ class BookingsController < AgreementBaseController
     def redirect_if_agreement_zone_not_exist
       redirect_to agreement_path(@agreement.id), status: :see_other, notice: 'La Zona seleccionada no se ha agregado al Acuerdo. Edite el Acuerdo y agregue la zona' unless @agreement_zone
     end
+
+    def build_rate
+      agreement_zone_group = AgreementZoneGroup.find(booking_params[:agreement_zone_group_id])
+      days = booking_params[:days_number]
+      agreement_zone_group.rate_groups
+      # buscar por la seccion
+    end
+
 
 end
