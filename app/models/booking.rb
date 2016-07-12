@@ -2,23 +2,23 @@
 #
 # Table name: bookings
 #
-#  id                      :integer          not null, primary key
-#  delivery_date           :datetime
-#  delivery_location       :string
-#  days_number             :integer
-#  return_location         :string
-#  ttoo_id                 :integer
-#  rac_id                  :integer
-#  agreement_zone_group_id :integer
-#  booking_number          :string
-#  external_reference      :string
-#  place_type_id           :integer
-#  place_name              :string
-#  fly_room                :string
-#  user_id                 :integer
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  agreement_zone_id       :integer
+#  id                 :integer          not null, primary key
+#  delivery_date      :datetime
+#  delivery_location  :string
+#  days_number        :integer
+#  return_location    :string
+#  ttoo_id            :integer
+#  rac_id             :integer
+#  booking_number     :string
+#  external_reference :string
+#  place_type_id      :integer
+#  place_name         :string
+#  fly_room           :string
+#  user_id            :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  agreement_zone_id  :integer
+#  rate_group_id      :integer
 #
 
 class Booking < ActiveRecord::Base
@@ -30,8 +30,10 @@ class Booking < ActiveRecord::Base
   belongs_to :renta_car, class_name: "Company", foreign_key: :rac_id
   belongs_to :place_type
   belongs_to :agreement_zone
+  has_many :rate_extras, dependent: :destroy, autosave: true
 
   accepts_nested_attributes_for :customer, :allow_destroy => true
+  accepts_nested_attributes_for :rate_extras, :allow_destroy => true
 
   # attr_reader
   def agreement_zone_group_id

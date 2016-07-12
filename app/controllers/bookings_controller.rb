@@ -25,6 +25,7 @@ class BookingsController < AgreementBaseController
   # POST /bookings
   def create
     @booking = Booking.new(booking_params)
+    @booking.rate_group = build_rate_group
 
     if @booking.save
       @booking = Booking.new(agreement_zone: @agreement_zone)
@@ -82,12 +83,10 @@ class BookingsController < AgreementBaseController
       redirect_to agreement_path(@agreement.id), status: :see_other, notice: 'La Zona seleccionada no se ha agregado al Acuerdo. Edite el Acuerdo y agregue la zona' unless @agreement_zone
     end
 
-    def build_rate
+    def build_rate_group
       agreement_zone_group = AgreementZoneGroup.find(booking_params[:agreement_zone_group_id])
       days = booking_params[:days_number]
-      agreement_zone_group.rate_groups
-      # buscar por la seccion
+      agreement_zone_group.rate_groups.joins(:agreement_zone_group_section).where("? BETWEEN agreement_zone_group_sections.section AND agreement_zone_group_sections.section_to", 4).first
     end
-
 
 end

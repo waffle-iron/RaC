@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Extra</th>
+    <th>Por Día</th>
+    <th>Máximo</th>
+    <th>Cantidad</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= f.fields_for :rate_extras do |e| %>
+    <tr>
+      <%= e.hidden_field :id %>
+      <%= e.hidden_field :booking_id %>
+      <%= e.hidden_field :rate_extra_id %>
+
+      <%= card_text_field_readonly e.object.rate_extra.agreement_zone_extra.extra.name, label: 'Extra' %>
+      <%= card_text_field_readonly e.object.rate_extra.cost, label: 'Por dia' %>
+      <%= card_text_field_readonly e.object.rate_extra.max_cost, label: 'Maximo' %>
+
+      <td><%= e.number_field :cost %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
