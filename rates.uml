@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>RailsDependency</ID>
+  <OriginalElement>#RaC</OriginalElement>
+  <nodes>
+    <node x="0.0" y="1946.9588479595523">TypeCategory</node>
+    <node x="1370.4401230498793" y="-92.1472203911228">SaleType</node>
+    <node x="2576.2551087673037" y="-349.8242107088722">AgreementZoneGroupSection</node>
+    <node x="1656.8087233575034" y="-339.5587343441001">AgreementZone</node>
+    <node x="3104.0693254229845" y="62.62568666227219">Tax</node>
+    <node x="1757.8057569764887" y="526.0685320694146">Agreement</node>
+    <node x="1804.0" y="1466.5838479595523">Nationality</node>
+    <node x="1199.0" y="1569.2088479595523">Company</node>
+    <node x="803.632388486047" y="611.5420402109429">Booking</node>
+    <node x="1835.0" y="1378.5838479595523">TreatmentType</node>
+    <node x="2746.9931883102618" y="59.839156229400146">AgreementZoneTax</node>
+    <node x="1804.0" y="1632.4916666666668">CompanyType</node>
+    <node x="1517.209184794551" y="-94.0804181358114">Rate</node>
+    <node x="2076.453746429356" y="12.133047681828202">RateGroup</node>
+    <node x="2077.8578334431995" y="-114.6305207646671">RateGroupInsurance</node>
+    <node x="856.4881344759393" y="477.59519162028624">BookingRateExtra</node>
+    <node x="158.0" y="1946.9588479595523">Theme::Toolbar</node>
+    <node x="1386.0639419907711" y="728.6054744996499">Zone</node>
+    <node x="1296.0" y="1400.2088479595523">Customer</node>
+    <node x="0.0" y="797.6583333333335">User</node>
+    <node x="2883.9444078224565" y="325.7418456268746">RateGroupInsuranceCost</node>
+    <node x="274.0" y="1946.9588479595523">Theme::Header</node>
+    <node x="2546.865743792573" y="631.5826223792367">AgreementZoneInsurance</node>
+    <node x="388.0" y="1946.9588479595523">Theme::Toolbar::Button</node>
+    <node x="2731.8316853438805" y="-116.9615846060367">AgreementZoneGroup</node>
+    <node x="2112.2179740716324" y="345.54301569938593">RateExtra</node>
+    <node x="1323.5" y="1037.6583333333335">PlaceType</node>
+    <node x="2104.1523840914087" y="198.76301911667787">RateTax</node>
+    <node x="2957.9585805317515" y="728.0424076484129">Insurance</node>
+    <node x="2678.134366073391" y="514.3437188415525">Extra</node>
+    <node x="2596.9734124368274" y="328.85179398987174">AgreementZoneExtra</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Agreement" target="AgreementZoneGroup">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Rate" target="RateTax">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneTax" target="Tax">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Booking" target="Company">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZone" target="AgreementZoneTax">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="RateGroup" target="AgreementZoneGroup">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZone" target="Rate">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Booking" target="PlaceType">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Rate" target="AgreementZone">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneGroupSection" target="RateGroup">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Agreement" target="AgreementZoneGroupSection">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Booking" target="RateExtra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneGroup" target="RateGroup">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Company" target="Agreement">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="RateGroup" target="AgreementZoneGroupSection">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="SaleType" target="Rate">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Rate" target="Agreement">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneInsurance" target="RateGroupInsuranceCost">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Customer" target="Nationality">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Booking" target="RateGroup">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="RateTax" target="AgreementZoneTax">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZone" target="Booking">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="BookingRateExtra" target="Booking">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZone" target="AgreementZoneExtra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Agreement" target="Rate">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="RateGroup" target="Booking">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Rate" target="SaleType">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZone" target="AgreementZoneInsurance">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Nationality" target="Customer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZone" target="AgreementZoneGroup">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneInsurance" target="Insurance">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Booking" target="Customer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="RateExtra" target="AgreementZoneExtra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="BookingRateExtra" target="RateExtra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneExtra" target="Extra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Zone" target="AgreementZone">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CompanyType" target="Company">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Company" target="CompanyType">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZone" target="AgreementZoneGroupSection">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Company" target="Booking">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Zone" target="Zone">
+      <point x="0.0" y="0.0" />
+      <point x="1537.5639419907711" y="654.1054744996499" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Customer" target="TreatmentType">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Agreement" target="AgreementZone">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneExtra" target="RateExtra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="User" target="Booking">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Agreement" target="Zone">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Rate" target="RateGroup">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Agreement" target="AgreementZoneInsurance">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="PlaceType" target="Booking">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneGroup" target="RateGroupInsurance">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Rate" target="RateExtra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Rate" target="RateGroupInsurance">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Agreement" target="AgreementZoneExtra">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Agreement" target="AgreementZoneTax">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Booking" target="AgreementZone">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="RateGroupInsurance" target="RateGroupInsuranceCost">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="AgreementZoneTax" target="RateTax">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.1292803970223326" x="2457.869259503406" y="-2.580531751263493" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Association fields</Category>
+    <Category>Migration fields</Category>
+  </Categories>
+</Diagram>
+

@@ -24,7 +24,7 @@
   <%= f.number_field :days_number, label: 'Days number' %>
   <%= f.text_field :return_location, label: 'Return location' %>
 
-  <%= f.collection_select :agreement_zone_group_id, @agreement_zone.groups.order(:group), :id, :group, {label: 'Grupo'} %>
+  <%= f.collection_select :rate_group_id, @agreement_zone.groups.order(:group), :id, :group, {label: 'Grupo'} %>
 
   <%= f.text_field :booking_number, label: 'Booking number' %>
   <%= f.text_field :external_reference, label: 'External reference' %>

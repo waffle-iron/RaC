@@ -20,6 +20,10 @@
           Codigo
         </th>
 
+        <th data-column-id="zone" >
+          Zona
+        </th>
+
         <th data-column-id="from" >
           Desde
         </th>
@@ -45,6 +49,8 @@
         <td><%= rate.id %></td>
 
         <td><%= rate.code %></td>
+
+        <td><%= rate.agreement_zone&.zone&.name %></td>
 
         <td><%= rate.from %></td>
 

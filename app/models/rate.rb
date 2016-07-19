@@ -29,4 +29,5 @@ class Rate < ActiveRecord::Base
   accepts_nested_attributes_for :insurances, :allow_destroy => true
   accepts_nested_attributes_for :taxes, :allow_destroy => true
   accepts_nested_attributes_for :extras, :allow_destroy => true
+
 end

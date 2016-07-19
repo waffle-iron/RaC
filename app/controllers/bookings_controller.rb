@@ -89,4 +89,10 @@ class BookingsController < AgreementBaseController
       agreement_zone_group.rate_groups.joins(:agreement_zone_group_section).where("? BETWEEN agreement_zone_group_sections.section AND agreement_zone_group_sections.section_to", 4).first
     end
 
+    def build_booking_extras
+      agreement_zone = AgreementZoneGroup.find(booking_params[:agreement_zone_group_id])
+      days = booking_params[:days_number]
+      agreement_zone_group.rate_groups.joins(:agreement_zone_group_section).where("? BETWEEN agreement_zone_group_sections.section AND agreement_zone_group_sections.section_to", 4).first
+    end
+
 end

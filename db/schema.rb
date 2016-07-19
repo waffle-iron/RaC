@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712212901) do
+ActiveRecord::Schema.define(version: 20160714072927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,12 +267,12 @@ ActiveRecord::Schema.define(version: 20160712212901) do
     t.date     "from"
     t.date     "to"
     t.boolean  "is_active"
-    t.boolean  "is_offer"
+    t.boolean  "is_offer",          default: true
     t.decimal  "commission_base"
     t.integer  "agreement_zone_id"
     t.integer  "agreement_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "sale_type_id"
   end
 

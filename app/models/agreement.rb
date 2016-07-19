@@ -34,4 +34,12 @@ class Agreement < ActiveRecord::Base
       group_section.update!(section_to: to)
     end
   end
+
+  def current_rate
+    rates.where(agreement_zone_id: nil).where(is_active: true).where(is_offer: false).first
+  end
+
+  def current_offer
+    rates.where(agreement_zone_id: nil).where(is_active: true).where(is_offer: true).first
+  end
 end

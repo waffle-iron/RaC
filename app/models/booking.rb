@@ -30,7 +30,7 @@ class Booking < ActiveRecord::Base
   belongs_to :renta_car, class_name: "Company", foreign_key: :rac_id
   belongs_to :place_type
   belongs_to :agreement_zone
-  has_many :rate_extras, dependent: :destroy, autosave: true
+  # has_many :rate_extras, dependent: :destroy, autosave: true
 
   accepts_nested_attributes_for :customer, :allow_destroy => true
   accepts_nested_attributes_for :rate_extras, :allow_destroy => true
