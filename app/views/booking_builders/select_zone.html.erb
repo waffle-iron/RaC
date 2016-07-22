@@ -1,0 +1,7 @@
+
+<%= render '/layouts/block_header' %>
+
+<p class="anchor" id="zones"></p>
+<%= card  ['Creando Reserva', '1 - Seleccione la Zona'] do %>
+  <%= tree :tree2, @all_zones, :name, :id, :zones, :parent_zone_id, @link, @included_zones, :show %>
+<% end %>

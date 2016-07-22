@@ -22,6 +22,8 @@
 #
 
 class Booking < ActiveRecord::Base
+  attr_accessor :agreement_zone_group_id
+
   belongs_to :agreement_zone
   belongs_to :rate_group
   belongs_to :user
@@ -30,24 +32,24 @@ class Booking < ActiveRecord::Base
   belongs_to :renta_car, class_name: "Company", foreign_key: :rac_id
   belongs_to :place_type
   belongs_to :agreement_zone
-  # has_many :rate_extras, dependent: :destroy, autosave: true
+  has_many :booking_rate_extras, dependent: :destroy, autosave: true
 
   accepts_nested_attributes_for :customer, :allow_destroy => true
-  accepts_nested_attributes_for :rate_extras, :allow_destroy => true
+  accepts_nested_attributes_for :booking_rate_extras, :allow_destroy => true
 
-  # attr_reader
-  def agreement_zone_group_id
-    self[:agreement_zone_group_id]
-  end
-
-  # attr_writer
-  def agreement_zone_group_id=(val)
-    self[:agreement_zone_group_id] = val
-  end
-
-  # virtual attribute
-  def agreement_zone_group_id
-    #return true/false
-  end
+  # # attr_reader
+  # def agreement_zone_group_id
+  #   self[:agreement_zone_group_id]
+  # end
+  #
+  # # attr_writer
+  # def agreement_zone_group_id=(val)
+  #   self[:agreement_zone_group_id] = val
+  # end
+  #
+  # # virtual attribute
+  # def agreement_zone_group_id
+  #   #return true/false
+  # end
 
 end

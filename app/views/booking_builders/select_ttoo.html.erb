@@ -1,0 +1,12 @@
+<%= render '/layouts/block_header' %>
+
+<p class="anchor" id="zones"></p>
+<%= card  ['Creando Reserva', '2 - Seleccione Tour Operador'] do %>
+  <ul>
+    <% @ttoos.each do |ttoo| %>
+      <li>
+        <%= link_to ttoo.name, new_booking_builders_path(@zone_id, ttoo)  %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,6 +1,8 @@
 <%= side_menu do %>
   <%= side_button 'Inicio', root_path, 'home' %>
   <%= side_submenu 'Administracion', 'codepen' do %>
+    <%= side_submenu_button 'RESERVAS', select_zone_booking_builders_path %>
+
     <%= side_submenu_button 'Acuerdos', agreements_path %>
     <%= side_submenu_button 'Empresas', companies_path %>
 	  <%= side_submenu_button 'Extras', extras_path %>
