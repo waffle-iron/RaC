@@ -39,8 +39,6 @@
   <p class="c-black f-500 m-b-5 ">Cliente:</p>
   <%= render partial: 'customer_form', locals: {f: f} %>
 
-  <p class="c-black f-500 m-b-5 ">Extras:</p>
-  <%= render partial: 'extra_form', locals: {f: f} %>
 
   <%# f.collection_select :rac_id, Company.joins(:company_type).where("company_types.name = ?", "Rent A Car").order(:name), :id, :name, {label: 'Rent a Car'} %>
 

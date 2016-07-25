@@ -87,7 +87,7 @@ class AgreementZone < ActiveRecord::Base
 
     rate_groups_ids = RateGroup.joins(:agreement_zone_group).where("rate_id in (?)", rate_ids).select("MIN(cost) AS cost, MIN(agreement_zone_groups.group) as group, MIN(rate_groups.id) as id").group("agreement_zone_groups.group").pluck("MIN(rate_groups.id)")
 
-    RateGroup.includes(:agreement_zone_group).where("rate_groups.id in (?)", rate_groups_ids ).order("agreement_zone_groups.group")
+    RateGroup.includes(:agreement_zone_group).where("rate_groups.id in (?)", rate_groups_ids).order("agreement_zone_groups.group")
   end
 
   def get_rate_extras
@@ -106,6 +106,15 @@ class AgreementZone < ActiveRecord::Base
     rate_ids = self.rate_ids(self.current_rate, self.current_offer)
 
     RateExtra.joins(:agreement_zone_extra).where("rate_id in (?)", rate_ids).select('MIN(rate_extras.id) as id, MIN(cost) AS cost').group("agreement_zone_extras.extra_id").order('MIN(cost) ASC').pluck('MIN(rate_extras.id)')
+
+  end
+
+  def get_rate_insurances(group)
+    rate_ids = self.rate_ids(self.current_rate, self.current_offer)
+
+    ids = RateGroupInsuranceCost.joins([:agreement_zone_insurance, rate_group_insurance: [:agreement_zone_group]]).where("rate_group_insurances.rate_id in (?) and  agreement_zone_groups.group = ?", rate_ids, group).select('MIN(cost) AS cost').group("agreement_zone_insurances.insurance_id ").order('MIN(cost) ASC').pluck('MIN(rate_group_insurance_costs.id)')
+
+    RateGroupInsuranceCost.includes([agreement_zone_insurance: [:insurance], rate_group_insurance: [:agreement_zone_group]]).where("id in (?)", ids)
 
   end
 

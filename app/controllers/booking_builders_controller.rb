@@ -21,6 +21,7 @@ class BookingBuildersController < ApplicationController
     tour_operator_company_type = 2
 
     ttoos = AgreementZone.joins(agreement: [:company]).where("companies.company_type_id = ?", tour_operator_company_type).where(zone_id: @zone_id).group("agreements.company_id").pluck("agreements.company_id")
+
     @ttoos = Company.where("id in (?)", ttoos).order(:name)
   end
 
@@ -28,10 +29,9 @@ class BookingBuildersController < ApplicationController
   def new
     @zone_id = params[:zone_id]
     @booking = Booking.new(agreement_zone: @agreement_zone)
-    build_extras
     build_customer
     build_groups
-    # @groups = @agreement_zone.groups.order(:group)
+
     @route = new_select_insurances_booking_builders_path(@zone_id, @ttoo)
   end
 
@@ -39,10 +39,14 @@ class BookingBuildersController < ApplicationController
   def new_select_insurances
     @zone_id = params[:zone_id]
     @booking = Booking.new(booking_params)
-    # build_extras
-    # build_customer
+    @booking.calculate_days
+    build_extras
+    build_insurances
+
     @route = new_select_insurances_booking_builders_path(@zone_id, @ttoo)
   end
+
+  # 5 To
 
   private
   # Only allow a trusted parameter "white list" through.
@@ -93,4 +97,16 @@ class BookingBuildersController < ApplicationController
     @groups = @agreement_zone.get_rate_groups
   end
 
+  def build_insurances
+    @booking.get_rate_insurances.each do |rate_group_insurance_cost|
+      @booking.booking_insurances.build({rate_group_insurance_cost: rate_group_insurance_cost, include: false})
+    end
+  end
 end
+
+
+
+
+
+
+

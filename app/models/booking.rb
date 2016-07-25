@@ -40,4 +40,11 @@ class Booking < ActiveRecord::Base
   accepts_nested_attributes_for :booking_rate_extras, :allow_destroy => true
   accepts_nested_attributes_for :booking_insurances, :allow_destroy => true
 
+  def calculate_days
+    self.days_number = ((return_date - delivery_date) / 1.day).to_i
+  end
+
+  def get_rate_insurances
+    self.agreement_zone.get_rate_insurances(self.group)
+  end
 end

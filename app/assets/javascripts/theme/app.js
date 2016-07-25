@@ -1287,7 +1287,10 @@ $(document).ready(function(){
     -----------------------------------------------------------*/
     //Date Time Picker
     if ($('.date-time-picker')[0]) {
-	   $('.date-time-picker').datetimepicker();
+	   $('.date-time-picker').datetimepicker({
+          format: "DD/MM/YYYY h:mm a"
+       }
+       );
     }
 
     //Time

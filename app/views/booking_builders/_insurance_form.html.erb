@@ -1,0 +1,22 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Seguro</th>
+        <th>Por Día</th>
+        <th>Incluir</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= f.fields_for :booking_insurances do |e| %>
+          <tr>
+            <% offer = e.object.rate_group_insurance_cost.rate_group_insurance.rate.is_offer ? ' - OFERTA ' : '' %>
+            <%= e.hidden_field :id %>
+            <%= e.hidden_field :booking_id %>
+            <%= e.hidden_field :rate_group_insurance_cost_id %>
+            <td><%= "#{e.object.rate_group_insurance_cost.agreement_zone_insurance.insurance.name} #{ offer }" %></td>
+            <td><%= e.object.rate_group_insurance_cost.cost %></td>
+            <td><%= e.check_box :include %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>

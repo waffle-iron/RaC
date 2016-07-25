@@ -1,0 +1,30 @@
+<%= f.hidden_field :agreement_zone_id %>
+<%= f.hidden_field :ttoo_id %>
+
+<%= card_text_field_readonly f.object.agreement_zone.agreement.company.name, label: 'Tour Operador' %>
+<%= card_text_field_readonly f.object.agreement_zone.zone.name, label: 'Zona' %>
+
+<%= f.hidden_field :delivery_date %>
+<%= card_text_field_readonly f.object.delivery_date, label: 'Fecha de entrega' %>
+<%= f.text_field :delivery_location, label: 'Lugar de entrega' %>
+
+<%= f.hidden_field :return_date %>
+<%= card_text_field_readonly f.object.return_date, label: 'Fecha de retorno' %>
+<%= f.text_field :return_location, label: 'Lugar de Retorno' %>
+
+<%= f.hidden_field :days_number %>
+<%= card_text_field_readonly f.object.days_number, label: 'Numero de Dias' %>
+
+<%= f.hidden_field :rate_group_id %>
+<%= card_text_field_readonly f.object.group, label: 'Grupo Seleccionado' %>
+
+<%= f.text_field :booking_number, label: 'Booking number' %>
+<%= f.text_field :external_reference, label: 'External reference' %>
+<%= f.collection_select :place_type_id, PlaceType.order(:name), :id, :name, {label: 'Place type'} %>
+
+<%= f.text_field :place_name, label: 'Place name' %>
+<%= f.text_field :fly_room, label: 'Fly room' %>
+<%= f.collection_select :user_id, User.order(:name), :id, :name, {label: 'Guia'} %>
+
+<p class="c-black f-500 m-b-5 ">Cliente:</p>
+<%= render partial: 'customer_form', locals: {f: f} %>
