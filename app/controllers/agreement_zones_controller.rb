@@ -5,6 +5,7 @@ class AgreementZonesController < AgreementBaseController
   before_action :redirect_if_zone_not_exist
 
   def show
+    @agreement_zone.re_arrange_sections
   end
 
   def edit

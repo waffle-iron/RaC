@@ -16,4 +16,8 @@ class RateGroup < ActiveRecord::Base
   belongs_to :agreement_zone_group
   belongs_to :agreement_zone_group_section
   has_many :bookings, dependent: :restrict_with_error
+
+  def group
+    agreement_zone_group.group
+  end
 end

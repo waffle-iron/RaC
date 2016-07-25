@@ -3,8 +3,8 @@ Rails.application.routes.draw do
     collection do
       get :select_zone, action: :select_zone
       get '/:zone_id/select_ttoo/', action: :select_ttoo, as: :select_ttoo
-      get ':zone_id/new/:ttoo_id', action: :new, as: :new
-      post :new_select_insurances, action: :new_select_insurances, as: :new_select_insurances
+      get '/:zone_id/new/:ttoo_id', action: :new, as: :new
+      post '/:zone_id/new_select_insurances/:ttoo_id', action: :new_select_insurances, as: :new_select_insurances
     end
   end
   resources :customers

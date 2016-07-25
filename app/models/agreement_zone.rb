@@ -78,14 +78,16 @@ class AgreementZone < ActiveRecord::Base
     }
   end
 
-  def get_rate_groups(current_rate, current_offer)
-    rate_ids = []
-    rate_ids << current_offer.id if current_offer
-    rate_ids << current_rate.id if current_rate
+  def get_rate_groups
+    rate_ids = rate_ids(current_rate, current_offer)
 
-    #RateGroup.joins(:agreement_zone_group, :agreement_zone_group_section).where("rate_id in (?)", rate_ids).order("agreement_zone_groups.group ASC").order("agreement_zone_group_sections.section ASC").order("cost DESC")
+    # RateGroup.joins(:agreement_zone_group, :agreement_zone_group_section).where("rate_id in (?)", rate_ids).order("agreement_zone_groups.group ASC").order("agreement_zone_group_sections.section ASC").order("cost DESC")
 
-    RateExtra.joins(:agreement_zone_extra).where("rate_id in (?)", rate_ids).select('MIN(rate_extras.id) as id, MIN(cost) AS cost').group("agreement_zone_extras.extra_id").order('MIN(cost) ASC').pluck('MIN(rate_extras.id)')
+    # RateExtra.joins(:agreement_zone_extra).where("rate_id in (?)", rate_ids).select('MIN(rate_extras.id) as id, MIN(cost) AS cost').group("agreement_zone_extras.extra_id").order('MIN(cost) ASC').pluck('MIN(rate_extras.id)')
+
+    rate_groups_ids = RateGroup.joins(:agreement_zone_group).where("rate_id in (?)", rate_ids).select("MIN(cost) AS cost, MIN(agreement_zone_groups.group) as group, MIN(rate_groups.id) as id").group("agreement_zone_groups.group").pluck("MIN(rate_groups.id)")
+
+    RateGroup.includes(:agreement_zone_group).where("rate_groups.id in (?)", rate_groups_ids ).order("agreement_zone_groups.group")
   end
 
   def get_rate_extras

@@ -1,0 +1,31 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Grupo</th>
+        <% owner.insurances.each do |agreement_zone_insurance|  %>
+          <th><%= agreement_zone_insurance.insurance.name %></th>
+          <th>Incluir?</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :insurances do |i| %>
+        <tr>
+          <%= i.hidden_field :id %>
+          <%= i.hidden_field :rate_id %>
+          <%= i.hidden_field :agreement_zone_group_id %>
+          <td><%= i.object.agreement_zone_group.group %></td>
+          <%= i.fields_for :costs do |c| %>
+            <td>
+              <%= c.hidden_field :id %>
+              <%= c.hidden_field :rate_group_insurance_id %>
+              <%= c.hidden_field :agreement_zone_insurance_id %>
+              <%= c.number_field :cost %>
+            </td>
+            <td><%= c.check_box :include_in_cost %></td>
+          <% end %>
+        </tr>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>

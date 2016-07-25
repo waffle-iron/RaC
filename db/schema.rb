@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714072927) do
+ActiveRecord::Schema.define(version: 20160725072216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,16 @@ ActiveRecord::Schema.define(version: 20160714072927) do
 
   add_index "agreements", ["company_id"], name: "index_agreements_on_company_id", using: :btree
 
+  create_table "booking_insurances", force: :cascade do |t|
+    t.integer  "rate_group_insurance_cost_id"
+    t.integer  "booking_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "booking_insurances", ["booking_id"], name: "index_booking_insurances_on_booking_id", using: :btree
+  add_index "booking_insurances", ["rate_group_insurance_cost_id"], name: "index_booking_insurances_on_rate_group_insurance_cost_id", using: :btree
+
   create_table "booking_rate_extras", force: :cascade do |t|
     t.integer  "quantity"
     t.integer  "rate_extra_id"
@@ -134,6 +144,7 @@ ActiveRecord::Schema.define(version: 20160714072927) do
     t.datetime "updated_at",         null: false
     t.integer  "agreement_zone_id"
     t.integer  "rate_group_id"
+    t.datetime "return_date"
   end
 
   add_index "bookings", ["agreement_zone_id"], name: "index_bookings_on_agreement_zone_id", using: :btree
@@ -354,6 +365,8 @@ ActiveRecord::Schema.define(version: 20160714072927) do
   add_foreign_key "agreement_zones", "agreements"
   add_foreign_key "agreement_zones", "zones"
   add_foreign_key "agreements", "companies"
+  add_foreign_key "booking_insurances", "bookings"
+  add_foreign_key "booking_insurances", "rate_group_insurance_costs"
   add_foreign_key "booking_rate_extras", "bookings"
   add_foreign_key "booking_rate_extras", "rate_extras"
   add_foreign_key "bookings", "agreement_zones"

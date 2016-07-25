@@ -20,13 +20,10 @@
 
   <%= f.datetime_select :delivery_date, label: 'Delivery date' %>
   <%= f.text_field :delivery_location, label: 'Delivery location' %>
-
-  <%= f.datetime_select :return_date, label: 'Return date' %>
+  <%= f.number_field :days_number, label: 'Days number' %>
   <%= f.text_field :return_location, label: 'Return location' %>
 
-  <%# f.number_field :days_number, label: 'Days number' # Not here, on return, calculate number of days %>
-
-  <%= f.collection_select :group, @groups, :group, :group, {label: 'Grupo'} %>
+  <%= f.collection_select :agreement_zone_group_id, @groups, :id, :group, {label: 'Grupo'} %>
 
   <%= f.text_field :booking_number, label: 'Booking number' %>
   <%= f.text_field :external_reference, label: 'External reference' %>

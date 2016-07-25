@@ -12,6 +12,7 @@
           <tr>
             <%= e.hidden_field :id %>
             <%= e.hidden_field :booking_id %>
+            <%= e.hidden_field :rate_extra_id %>
             <td><%= "#{e.object.rate_extra.agreement_zone_extra.extra.name} #{e.object.rate_extra.rate.is_offer ? ' - OFERTA ' : ''}" %></td>
             <td><%= e.object.rate_extra.cost %></td>
             <td><%= e.object.rate_extra.max_cost %></td>

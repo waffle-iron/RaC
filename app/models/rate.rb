@@ -7,7 +7,7 @@
 #  from              :date
 #  to                :date
 #  is_active         :boolean
-#  is_offer          :boolean
+#  is_offer          :boolean          default(TRUE)
 #  commission_base   :decimal(, )
 #  agreement_zone_id :integer
 #  agreement_id      :integer

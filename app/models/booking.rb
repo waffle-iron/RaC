@@ -19,10 +19,11 @@
 #  updated_at         :datetime         not null
 #  agreement_zone_id  :integer
 #  rate_group_id      :integer
+#  return_date        :datetime
 #
 
 class Booking < ActiveRecord::Base
-  attr_accessor :agreement_zone_group_id
+  attr_accessor :group
 
   belongs_to :agreement_zone
   belongs_to :rate_group
@@ -33,23 +34,10 @@ class Booking < ActiveRecord::Base
   belongs_to :place_type
   belongs_to :agreement_zone
   has_many :booking_rate_extras, dependent: :destroy, autosave: true
+  has_many :booking_insurances, dependent: :destroy, autosave: true
 
   accepts_nested_attributes_for :customer, :allow_destroy => true
   accepts_nested_attributes_for :booking_rate_extras, :allow_destroy => true
-
-  # # attr_reader
-  # def agreement_zone_group_id
-  #   self[:agreement_zone_group_id]
-  # end
-  #
-  # # attr_writer
-  # def agreement_zone_group_id=(val)
-  #   self[:agreement_zone_group_id] = val
-  # end
-  #
-  # # virtual attribute
-  # def agreement_zone_group_id
-  #   #return true/false
-  # end
+  accepts_nested_attributes_for :booking_insurances, :allow_destroy => true
 
 end
