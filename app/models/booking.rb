@@ -47,4 +47,49 @@ class Booking < ActiveRecord::Base
   def get_rate_insurances
     self.agreement_zone.get_rate_insurances(self.group)
   end
+
+  def calculate_totals
+    {
+      total_extras: get_total_extras,
+      total_insurances: get_total_insurances
+
+    }
+  end
+
+  def get_total_extras
+    total_extras = 0
+    self.booking_rate_extras.each do |booking_rate_extra|
+      rate_extra = booking_rate_extra.rate_extra
+
+      cost = booking_rate_extra.rate_extra.cost * self.days_number
+      cost = rate_extra.max_cost if cost > rate_extra.max_cost
+
+      total_extras += cost
+    end
+
+    total_extras
+  end
+
+  def get_total_insurances
+    total_insurances = 0
+    self.booking_insurances.each do |booking_insurance|
+      rate_group_insurance_cost = booking_insurance.rate_group_insurance_cost
+
+      cost = rate_group_insurance_cost.cost * self.days_number
+
+      total_insurances += cost
+    end
+
+    total_insurances
+  end
+
 end
+
+
+
+
+
+
+
+
+

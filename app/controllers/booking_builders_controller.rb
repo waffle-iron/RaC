@@ -1,9 +1,10 @@
 class BookingBuildersController < ApplicationController
 
-  before_filter :load_ttoo, only: [:new, :new_select_insurances]
-  before_filter :redirect_if_no_ttoo, only: [:new, :new_select_insurances]
-  before_filter :load_agreement, only: [:new, :new_select_insurances]
-  before_filter :load_agreement_zone, only: [:new, :new_select_insurances]
+  before_filter :load_ttoo, only: [:new, :new_select_insurances, :total]
+  before_filter :redirect_if_no_ttoo, only: [:new, :new_select_insurances, :total]
+  before_filter :load_agreement, only: [:new, :new_select_insurances, :total]
+  before_filter :load_agreement_zone, only: [:new, :new_select_insurances, :total ]
+
 
   # 1 - GET select_zone
   def select_zone
@@ -43,10 +44,19 @@ class BookingBuildersController < ApplicationController
     build_extras
     build_insurances
 
-    @route = new_select_insurances_booking_builders_path(@zone_id, @ttoo)
+    #@route = new_select_insurances_booking_builders_path(@zone_id, @ttoo)
+    @route = total_booking_builders_path(@zone_id, @ttoo)
   end
 
-  # 5 To
+  # 5 Total
+  def total
+    @zone_id = params[:zone_id]
+    @booking = Booking.new(booking_params)
+
+    @route = total_booking_builders_path(@zone_id, @ttoo)
+  end
+
+  # 6 Create
 
   private
   # Only allow a trusted parameter "white list" through.
