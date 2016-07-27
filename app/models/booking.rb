@@ -20,6 +20,12 @@
 #  agreement_zone_id  :integer
 #  rate_group_id      :integer
 #  return_date        :datetime
+#  total_extras       :decimal(, )
+#  total_insurances   :decimal(, )
+#  total_groups       :decimal(, )
+#  total_taxes        :decimal(, )
+#  total              :decimal(, )
+#  observations       :text
 #
 
 class Booking < ActiveRecord::Base
@@ -31,14 +37,24 @@ class Booking < ActiveRecord::Base
   has_one :customer, dependent: :destroy, autosave: true
   belongs_to :tour_operator, class_name: "Company", foreign_key: :ttoo_id
   belongs_to :renta_car, class_name: "Company", foreign_key: :rac_id
+  belongs_to :current_rate, class_name: "Rate", foreign_key: :current_rate_id
+  belongs_to :current_offer, class_name: "Rate", foreign_key: :current_offer_id
+
   belongs_to :place_type
-  belongs_to :agreement_zone
   has_many :booking_rate_extras, dependent: :destroy, autosave: true
   has_many :booking_insurances, dependent: :destroy, autosave: true
 
   accepts_nested_attributes_for :customer, :allow_destroy => true
-  accepts_nested_attributes_for :booking_rate_extras, :allow_destroy => true
-  accepts_nested_attributes_for :booking_insurances, :allow_destroy => true
+  accepts_nested_attributes_for :booking_rate_extras, :allow_destroy => true, reject_if: :booking_rate_extra_no_quantity
+  accepts_nested_attributes_for :booking_insurances, :allow_destroy => true, reject_if: :booking_insurance_not_included
+
+  def booking_insurance_not_included(attributes)
+    attributes['include'] != "true"
+  end
+
+  def booking_rate_extra_no_quantity(attributes)
+    attributes['quantity'].to_i <= 0
+  end
 
   def calculate_days
     self.days_number = ((return_date - delivery_date) / 1.day).to_i
@@ -49,10 +65,14 @@ class Booking < ActiveRecord::Base
   end
 
   def calculate_totals
-    {
-      total_extras: get_total_extras,
-      total_insurances: get_total_insurances
 
+    total_extras = get_total_extras
+    total_insurances = get_total_insurances
+
+    {
+      total_extras: total_extras,
+      total_insurances: total_insurances,
+      total: total_extras + total_insurances
     }
   end
 

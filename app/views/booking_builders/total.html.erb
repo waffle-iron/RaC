@@ -1,0 +1,24 @@
+<%= render '/layouts/block_header' %>
+
+<p class="anchor" id="zones"></p>
+<%= card ['Creando Reserva', '5 - Totales'] do %>
+
+  <%= form_for(@booking, builder: ThemeBuilder, url: @route) do |f| %>
+    <% if @booking.errors.any? %>
+      <hr/>
+      <div class="has-error">
+        <ul>
+          <% @booking.errors.full_messages.each do |message| %>
+            <li><i class="input-helper"><%= message %></i></li>
+          <% end %>
+        </ul>
+      </div>
+      <hr/>
+    <% end %>
+
+    <%= render partial: 'form_locked_total', locals: {f: f} %>
+
+    <%= f.submit 'Guardar' %>
+  <% end %>
+
+<% end %>

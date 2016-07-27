@@ -15,3 +15,5 @@ class BookingInsurance < ActiveRecord::Base
   belongs_to :rate_group_insurance_cost
   belongs_to :booking
 end
+
+

@@ -5,17 +5,18 @@
 <%= card_text_field_readonly f.object.agreement_zone.zone.name, label: 'Zona' %>
 
 <%= f.hidden_field :delivery_date %>
-<%= card_text_field_readonly f.object.delivery_date, label: 'Fecha de entrega' %>
+<%= card_text_field_readonly f.object.delivery_date.strftime("%d/%m/%Y %I:%M:%S %p"), label: 'Fecha de entrega' %>
 <%= f.text_field :delivery_location, label: 'Lugar de entrega' %>
 
 <%= f.hidden_field :return_date %>
-<%= card_text_field_readonly f.object.return_date, label: 'Fecha de retorno' %>
+<%= card_text_field_readonly f.object.return_date.strftime("%d/%m/%Y %I:%M:%S %p"), label: 'Fecha de retorno' %>
 <%= f.text_field :return_location, label: 'Lugar de Retorno' %>
 
 <%= f.hidden_field :days_number %>
 <%= card_text_field_readonly f.object.days_number, label: 'Numero de Dias' %>
 
 <%= f.hidden_field :rate_group_id %>
+<%= f.hidden_field :group %>
 <%= card_text_field_readonly f.object.group, label: 'Grupo Seleccionado' %>
 
 <%= f.text_field :booking_number, label: 'Booking number' %>

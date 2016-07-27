@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get '/:zone_id/new/:ttoo_id', action: :new, as: :new
       post '/:zone_id/new_select_insurances/:ttoo_id', action: :new_select_insurances, as: :new_select_insurances
       post '/:zone_id/total/:ttoo_id', action: :total, as: :total
+      post '/:zone_id/create/:ttoo_id', action: :create, as: :create
     end
   end
   resources :customers

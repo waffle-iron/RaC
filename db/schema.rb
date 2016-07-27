@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725072216) do
+ActiveRecord::Schema.define(version: 20160726220001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,14 @@ ActiveRecord::Schema.define(version: 20160725072216) do
     t.integer  "agreement_zone_id"
     t.integer  "rate_group_id"
     t.datetime "return_date"
+    t.decimal  "total_extras"
+    t.decimal  "total_insurances"
+    t.decimal  "total_groups"
+    t.decimal  "total_taxes"
+    t.decimal  "total"
+    t.text     "observations"
+    t.integer  "current_rate_id"
+    t.integer  "current_offer_id"
   end
 
   add_index "bookings", ["agreement_zone_id"], name: "index_bookings_on_agreement_zone_id", using: :btree

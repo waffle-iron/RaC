@@ -1,0 +1,13 @@
+<%= f.fields_for :customer do |c| %>
+
+  <%= c.hidden_field :treatment_type_id %>
+  <%= c.hidden_field :first_name %>
+  <%= c.hidden_field :last_name %>
+  <%= c.hidden_field :nationality_id %>
+
+  <%= card_text_field_readonly c.object.treatment_type.name, label: 'Tratamiento' %>
+  <%= card_text_field_readonly c.object.first_name, label: 'Nombre' %>
+  <%= card_text_field_readonly c.object.last_name, label: 'Apellido' %>
+  <%= card_text_field_readonly c.object.nationality.name, label: 'Nacionalidad' %>
+
+<% end %>

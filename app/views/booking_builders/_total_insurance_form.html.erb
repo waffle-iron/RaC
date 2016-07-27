@@ -1,0 +1,6 @@
+<%= f.fields_for :booking_insurances do |e| %>
+  <%= e.hidden_field :id %>
+  <%= e.hidden_field :booking_id %>
+  <%= e.hidden_field :rate_group_insurance_cost_id %>
+  <%= e.hidden_field :include %>
+<% end %>

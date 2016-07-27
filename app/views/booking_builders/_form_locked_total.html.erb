@@ -1,0 +1,48 @@
+<%= f.hidden_field :agreement_zone_id %>
+<%= f.hidden_field :booking_number %>
+<%= f.hidden_field :delivery_date %>
+<%= f.hidden_field :delivery_location %>
+<%= f.hidden_field :return_date %>
+<%= f.hidden_field :return_location %>
+<%= f.hidden_field :days_number %>
+<%= f.hidden_field :ttoo_id %>
+<%= f.hidden_field :rate_group_id %>
+<%= f.hidden_field :group %>
+<%= f.hidden_field :external_reference %>
+<%= f.hidden_field :place_name %>
+<%= f.hidden_field :place_type_id %>
+<%= f.hidden_field :fly_room %>
+<%= f.hidden_field :user_id %>
+<%= f.hidden_field :current_offer_id %>
+<%= f.hidden_field :current_rate_id %>
+
+<%= card_text_field_readonly f.object.booking_number, label: 'Booking number' %>
+<%= card_text_field_readonly f.object.agreement_zone.zone.name, label: 'Zona' %>
+<%= card_text_field_readonly f.object.delivery_date.strftime("%d/%m/%Y %I:%M:%S %p"), label: 'Fecha de entrega' %>
+<%= card_text_field_readonly f.object.delivery_location,  label: 'Lugar de entrega' %>
+<%= card_text_field_readonly f.object.return_date.strftime("%d/%m/%Y %I:%M:%S %p"), label: 'Fecha de devolucion' %>
+<%= card_text_field_readonly f.object.return_location,  label: 'Lugar de devolucion' %>
+<%= card_text_field_readonly f.object.days_number, label: 'Numero de Dias' %>
+
+<%= card_text_field_readonly f.object.agreement_zone.agreement.company.name, label: 'Tour Operador' %>
+<%= card_text_field_readonly f.object.group, label: 'Grupo Seleccionado' %>
+<%= card_text_field_readonly "#{f.object.current_rate&.code}    #{f.object.current_offer&.code}" , label: 'Tarifas' %>
+<%= card_text_field_readonly f.object.external_reference, label: 'Referencia Externa' %>
+<%= card_text_field_readonly f.object.place_type.name, label: 'Lugar' %>
+<%= card_text_field_readonly f.object.place_name, label: 'Nombre del Lugar' %>
+<%= card_text_field_readonly f.object.fly_room, label: 'Vuelo/Habitacion' %>
+<%= card_text_field_readonly f.object.user.name, label: 'Guia' %>
+
+<% totals = f.object.calculate_totals %>
+
+<%= card_text_field_readonly totals[:total_extras], label: 'Total Extras' %>
+<%= card_text_field_readonly totals[:total_insurances], label: 'Total Seguros' %>
+<%= card_text_field_readonly totals[:total], label: 'Total' %>
+
+
+<p class="c-black f-500 m-b-5 ">Cliente:</p>
+<%= render partial: 'customer_form_totals', locals: {f: f} %>
+<%= render partial: 'total_extra_form', locals: {f: f} %>
+<%= render partial: 'total_insurance_form', locals: {f: f} %>
+
+<%= f.collection_select :rac_id, Company.joins(:company_type).where("company_types.name = ?", "Rent A Car").order(:name), :id, :name, {label: 'Rent a Car'} %>
